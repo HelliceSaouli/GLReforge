@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="screen.cpp">
+      <Filter>screen</Filter>
+    </ClCompile>
+    <ClCompile Include="manger.cpp">
+      <Filter>manger</Filter>
+    </ClCompile>
+    <ClCompile Include="vec3.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="quaternion.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="mat4x4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="screen">
+      <UniqueIdentifier>{67d1a563-2457-4ed7-b863-d9469d02323f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="manger">
+      <UniqueIdentifier>{f5794d2a-8a56-466f-a726-577d35af9ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{bf733fdd-49a1-4d1a-afdf-6e00716e2226}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="screen.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="manger.h">
+      <Filter>manger</Filter>
+    </ClInclude>
+    <ClInclude Include="vec3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="quaternion.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="mat4x4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
