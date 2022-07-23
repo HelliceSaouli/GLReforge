@@ -151,19 +151,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="entity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manger.cpp" />
     <ClCompile Include="mat4x4.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="screen.cpp" />
+    <ClCompile Include="transform.cpp" />
     <ClCompile Include="vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.h" />
+    <ClInclude Include="entity.h" />
     <ClInclude Include="manger.h" />
     <ClInclude Include="mat4x4.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="screen.h" />
+    <ClInclude Include="transform.h" />
     <ClInclude Include="vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -17,6 +17,12 @@
     <ClCompile Include="mat4x4.cpp">
       <Filter>math</Filter>
     </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="transform.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -27,6 +33,9 @@
     </Filter>
     <Filter Include="math">
       <UniqueIdentifier>{bf733fdd-49a1-4d1a-afdf-6e00716e2226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entities">
+      <UniqueIdentifier>{6dafb65f-4a43-4ce4-b1fd-089b710e824e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +53,12 @@
       <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="mat4x4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="transform.h">
       <Filter>math</Filter>
     </ClInclude>
   </ItemGroup>
