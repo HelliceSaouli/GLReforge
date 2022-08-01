@@ -3,6 +3,8 @@
 #include "GLFW/glfw3.h"
 
 #include "screen.h"
+#include "mesh.h"
+#include "shader.h"
 
 #define FRAMCAP 1.0/60.0
 
@@ -46,5 +48,9 @@ class manger
     private:
 		GLboolean is_engine_running;
 		GLboolean can_engine_render;
+
+		/* the scene */
+		mesh test_mesh;
+		shader* test_shader;
 };
 

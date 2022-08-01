@@ -155,20 +155,38 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manger.cpp" />
     <ClCompile Include="mat4x4.cpp" />
+    <ClCompile Include="mesh.cpp" />
     <ClCompile Include="quaternion.cpp" />
+    <ClCompile Include="rendertools.cpp" />
+    <ClCompile Include="resouceloader.cpp" />
     <ClCompile Include="screen.cpp" />
+    <ClCompile Include="shader.cpp" />
     <ClCompile Include="transform.cpp" />
     <ClCompile Include="vec3.cpp" />
+    <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="manger.h" />
     <ClInclude Include="mat4x4.h" />
+    <ClInclude Include="mesh.h" />
     <ClInclude Include="quaternion.h" />
+    <ClInclude Include="rendertools.h" />
+    <ClInclude Include="resouceloader.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="screen.h" />
+    <ClInclude Include="shader.h" />
     <ClInclude Include="transform.h" />
     <ClInclude Include="vec3.h" />
+    <ClInclude Include="vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GLReforge.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basicprogram.frag" />
+    <None Include="basicprogram.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

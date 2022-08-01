@@ -23,6 +23,21 @@
     <ClCompile Include="transform.cpp">
       <Filter>math</Filter>
     </ClCompile>
+    <ClCompile Include="rendertools.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="vertex.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="resouceloader.cpp">
+      <Filter>manger</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -36,6 +51,15 @@
     </Filter>
     <Filter Include="entities">
       <UniqueIdentifier>{6dafb65f-4a43-4ce4-b1fd-089b710e824e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{1bd7b247-4b05-4b70-ba4e-1a6f225832a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mesh">
+      <UniqueIdentifier>{8838fa11-b7f1-455c-aa92-4950f0cb52f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="programs">
+      <UniqueIdentifier>{b68638af-581c-4072-a8ce-53ab7b25cbfc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,5 +85,32 @@
     <ClInclude Include="transform.h">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="rendertools.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="vertex.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="resouceloader.h">
+      <Filter>manger</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GLReforge.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basicprogram.frag">
+      <Filter>programs</Filter>
+    </None>
+    <None Include="basicprogram.vert">
+      <Filter>programs</Filter>
+    </None>
   </ItemGroup>
 </Project>
