@@ -22,13 +22,23 @@ void manger::engine_initialize() {
 	rendertools::opengl_info();
 
 	/* initialize scene testing */
-	test_mesh.create_geometry_buffer();
-	std::vector<vertex> buffer;
-	buffer.push_back(vertex(-1.0f, -1.0f, 0.0f));
-	buffer.push_back(vertex( 0.0f,  1.0f, 0.0f));
-	buffer.push_back(vertex( 1.0f, -1.0f, 0.0f));
-	test_mesh.glmemcpy(buffer);
+	//test_mesh.create_geometry_buffer();
+	//std::vector<vertex> buffer;
+	//std::vector<GLuint> indices;
+	//buffer.push_back(vertex(-1.0f, -1.0f, 0.0f));
+	//indices.push_back(0);
+	//buffer.push_back(vertex( 0.0f,  1.0f, 0.0f));
+	//indices.push_back(1);
+	//buffer.push_back(vertex( 1.0f, -1.0f, 0.0f));
+	//indices.push_back(2);
+	//test_mesh.glmemcpy(buffer, indices);
 
+	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
+	test_camera.set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
+
+	if (!resouceloader::load_mesh("models/test_model.gltf", &test_mesh)){
+		exit(0);
+	}
 	/* this stupid */
 	
 	std::string vertex_src    = resouceloader::load_shader_source("basicprogram.vert");
@@ -37,8 +47,11 @@ void manger::engine_initialize() {
 	test_shader->add_vertex_shader(vertex_src);
 	test_shader->add_fragement_shader(fragement_src);
 	test_shader->compile_program();
-	test_shader->add_uniform("scale");
-	
+	test_shader->add_uniform("transfrom_matrix");
+	test_shader->add_uniform("projection_matrix");
+
+	test_global = 0.0f;
+	test_transform.rotation(0.0f, 180.0f, 0.0f);
 }
 
 void manger::engine_start() {
@@ -92,7 +105,8 @@ void manger::engine_run() {
 			}
 			// handle inputs and do updates
 			engine_input_handel();
-			test_shader->uniform1f("scale", 0.5f);
+			engine_update();
+			
 
 			if (frame_counter >= 1.0) {
 				std::cout << " FPS : " << frames << std::endl;
@@ -116,6 +130,8 @@ void manger::engine_render() {
 	screen& win = screen::get_instance();
 	rendertools::clear_screen();
 	test_shader->bind_shader();
+	test_shader->uniformMatrix4("transfrom_matrix", test_transform.get_transform());
+	test_shader->uniformMatrix4("projection_matrix", test_camera.get_projection());
 	test_mesh.mesh_draw();
 	win.refresh();
 }
@@ -127,6 +143,13 @@ void manger::engine_clean_destroy() {
 	win.screen_destroy();
 
 }
+
+void manger::engine_update() {
+	test_global += 1.0f / 60.0f;
+	test_transform.translate(sin(test_global), 0.0f, 10.0f);
+	// test_transform.scale(sin(test_global), sin(test_global), sin(test_global));
+}
+
 
 void manger::engine_input_handel() {
 

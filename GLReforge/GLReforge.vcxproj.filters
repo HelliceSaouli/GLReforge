@@ -32,10 +32,13 @@
     <ClCompile Include="mesh.cpp">
       <Filter>mesh</Filter>
     </ClCompile>
-    <ClCompile Include="resouceloader.cpp">
-      <Filter>manger</Filter>
-    </ClCompile>
     <ClCompile Include="shader.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="resouceloader.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
       <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -60,6 +63,9 @@
     </Filter>
     <Filter Include="programs">
       <UniqueIdentifier>{b68638af-581c-4072-a8ce-53ab7b25cbfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{172caeb1-25c9-4149-a1f2-6c2a2757f03f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,13 +100,16 @@
     <ClInclude Include="mesh.h">
       <Filter>mesh</Filter>
     </ClInclude>
-    <ClInclude Include="resouceloader.h">
-      <Filter>manger</Filter>
-    </ClInclude>
     <ClInclude Include="shader.h">
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="resouceloader.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GLReforge.rc" />

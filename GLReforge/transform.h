@@ -27,6 +27,10 @@ class transform
 		vec3 get_location()const;
 		vec3 get_scale()const;
 		mat4x4  get_rotator()const;
+
+		/*get the full transform */
+		mat4x4 get_transform()const;
+
 	private:
 		mat4x4 translate_matrix;
 		mat4x4 scale_matrix;

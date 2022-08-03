@@ -4,7 +4,9 @@
 
 #include "screen.h"
 #include "mesh.h"
-#include "shader.h"
+#include "shader.h" // test
+#include "transform.h" // test
+#include "camera.h"
 
 #define FRAMCAP 1.0/60.0
 
@@ -44,6 +46,7 @@ class manger
 		void engine_render();
 		void engine_clean_destroy();
 		void engine_input_handel();
+		void engine_update();
 
     private:
 		GLboolean is_engine_running;
@@ -52,5 +55,8 @@ class manger
 		/* the scene */
 		mesh test_mesh;
 		shader* test_shader;
+		transform test_transform;
+		camera test_camera;
+		GLfloat test_global;
 };
 

@@ -80,3 +80,7 @@ vec3 transform::get_scale()const {
 mat4x4  transform::get_rotator()const {
 	return rotate_matrix;
 }
+
+mat4x4 transform::get_transform()const {
+	return  scale_matrix  * rotate_matrix * translate_matrix;
+}
