@@ -49,6 +49,7 @@ void manger::engine_initialize() {
 	test_shader->compile_program();
 	test_shader->add_uniform("transfrom_matrix");
 	test_shader->add_uniform("projection_matrix");
+	test_shader->add_uniform("camera_matrix");
 
 	test_global = 0.0f;
 	test_transform.rotation(0.0f, 180.0f, 0.0f);
@@ -132,6 +133,7 @@ void manger::engine_render() {
 	test_shader->bind_shader();
 	test_shader->uniformMatrix4("transfrom_matrix", test_transform.get_transform());
 	test_shader->uniformMatrix4("projection_matrix", test_camera.get_projection());
+	test_shader->uniformMatrix4("camera_matrix", test_camera.get_transform());
 	test_mesh.mesh_draw();
 	win.refresh();
 }
@@ -148,6 +150,7 @@ void manger::engine_update() {
 	test_global += 1.0f / 60.0f;
 	test_transform.translate(sin(test_global), 0.0f, 10.0f);
 	// test_transform.scale(sin(test_global), sin(test_global), sin(test_global));
+	test_camera.camera_update_transform();
 }
 
 
@@ -156,12 +159,13 @@ void manger::engine_input_handel() {
 	screen& win = screen::get_instance();
 	if (win.is_key_pressed(GLFW_KEY_LEFT)) {
 		std::cout << "Left Key is pressed " << std::endl;
-		GLdouble x, y;
-		win.follow_mouse(&x, &y);
-		std::cout << "mouse is at position : (" << x << ", " << y << ")" << std::endl;
+		vec3 left = test_camera.get_camera_left();
+		test_camera.move_camera(left, 0.5f / 60.0f);
 	}
 	if (win.is_key_pressed(GLFW_KEY_RIGHT)) {
 		std::cout << "Right Key is pressed " << std::endl;
+	    vec3 right = test_camera.get_camera_right();
+		test_camera.move_camera(right, 0.5f / 60.0f);
 	}
 
 }
