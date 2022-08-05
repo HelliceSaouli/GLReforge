@@ -18,5 +18,7 @@ class resouceloader
 public:
 	static std::string load_shader_source(const std::string& path);
 	static GLboolean load_mesh(const std::string& path, mesh* object); /* simplefunction to load mesh from file using assimp */
+	static GLubyte* load_texture(const std::string& path, GLint* width, GLint* Heigh);
+	static void free_texture_data(GLubyte* data);
 };
 

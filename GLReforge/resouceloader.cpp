@@ -1,5 +1,8 @@
 #include "resouceloader.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 std::string resouceloader::load_shader_source(const std::string& path) {
 
 	std::string  source;
@@ -47,9 +50,12 @@ GLboolean resouceloader::load_mesh(const std::string& path, mesh* object) {
 	// std::cout << "meshes = " << scene->mNumMeshes << std::endl;
 	const aiMesh* paiMesh = scene->mMeshes[0];
 	for (GLuint i = 0; i < paiMesh->mNumVertices; ++i) {
-		/* am taking only pos for now */
+		/* am taking only pos and u vfor now */
 		const aiVector3D* pPos = &(paiMesh->mVertices[i]);
-		buffer.push_back(vertex(pPos->x, pPos->y, pPos->z));
+		const aiVector3D* pTexCoord = paiMesh->HasTextureCoords(0) ? &(paiMesh->mTextureCoords[0][i]) : 
+																					new aiVector3D(0.0f, 0.0f, 0.0f);
+		
+		buffer.push_back(vertex(vec3(pPos->x, pPos->y, pPos->z), vec3(pTexCoord->x, pTexCoord->y, 0.0f)));
 	}
 
 
@@ -63,4 +69,14 @@ GLboolean resouceloader::load_mesh(const std::string& path, mesh* object) {
 
 	object->glmemcpy(buffer, indices);
 	return GL_TRUE;
+}
+
+GLubyte* resouceloader::load_texture(const std::string& path, GLint* width, GLint* Heigh) {
+	GLint nrChannels; // I don't need this now
+	stbi_set_flip_vertically_on_load(1); /* since opengl use images from buttom to top*/
+	return stbi_load(path.c_str(), width, Heigh, &nrChannels, 0); /* mybe i  should cast this ?? */
+}
+
+void resouceloader::free_texture_data(GLubyte* data) {
+	stbi_image_free(data);
 }

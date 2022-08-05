@@ -2,7 +2,7 @@
 #include "defines.h"
 camera::camera() {
 	camera_position = vec3(0.0f, 0.0f, 0.0f);
-    camera_up       = vec3(0.0f,-1.0f, 0.0f);
+    camera_up       = vec3(0.0f, 1.0f, 0.0f);
 	camera_forward  = vec3(0.0f, 0.0f, 1.0f);
 }
 
@@ -31,7 +31,7 @@ vec3 camera::get_camera_right() {
 
 void camera::camera_add_input_pitch(GLfloat senstive, GLfloat amount) {
 	GLfloat pitch = senstive * amount * TORADIEN;
-	vec3    yaxis = vec3(0.0f, -1.0f, 0.0f);
+	vec3    yaxis = vec3(0.0f, 1.0f, 0.0f);
 
 	vec3    haxis  = yaxis.cross(camera_forward);
 	camera_forward = camera_forward.rotate(pitch, haxis);
@@ -42,7 +42,7 @@ void camera::camera_add_input_pitch(GLfloat senstive, GLfloat amount) {
 
 void camera::camera_add_input_yaw(GLfloat senstive, GLfloat amount) {
 	GLfloat yaw = senstive * amount * TORADIEN;
-	vec3    yaxis = vec3(0.0f, -1.0f, 0.0f);
+	vec3    yaxis = vec3(0.0f, 1.0f, 0.0f);
 
 	vec3    haxis = yaxis.cross(camera_forward);
 	camera_forward = camera_forward.rotate(yaw, yaxis);

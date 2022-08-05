@@ -28,7 +28,7 @@ class vec3
 		}
 
 	public:
-		void negative();
+		void negative(); /* remove this later */
 		void normalize();
 
 		GLfloat length();

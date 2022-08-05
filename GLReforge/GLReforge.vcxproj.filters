@@ -41,6 +41,9 @@
     <ClCompile Include="camera.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -66,6 +69,9 @@
     </Filter>
     <Filter Include="tools">
       <UniqueIdentifier>{172caeb1-25c9-4149-a1f2-6c2a2757f03f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stb">
+      <UniqueIdentifier>{503754fd-63bd-4f68-b59f-b19e1dfdcfd2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +114,12 @@
       <Filter>tools</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>stb</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
       <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>

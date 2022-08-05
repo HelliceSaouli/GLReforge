@@ -37,7 +37,7 @@ GLboolean screen::setup_screen_window(GLint w, GLint h, GLchar* title) {
 	}
 
 	/* set up some options for windows inputs*/
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
+	// glfwSetInputMode(window, GLFW_STICKY_KEYS, GLFW_TRUE);
 
 	return GL_TRUE;
 }

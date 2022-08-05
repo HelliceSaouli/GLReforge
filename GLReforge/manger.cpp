@@ -39,6 +39,11 @@ void manger::engine_initialize() {
 	if (!resouceloader::load_mesh("models/test_model.gltf", &test_mesh)){
 		exit(0);
 	}
+	test_texture = new texture(GL_TEXTURE_2D, "defaults/default_uv_texture.jpg");
+	if (!test_texture->load_texture()) {
+		exit(0);
+	}
+
 	/* this stupid */
 	
 	std::string vertex_src    = resouceloader::load_shader_source("basicprogram.vert");
@@ -134,6 +139,7 @@ void manger::engine_render() {
 	test_shader->uniformMatrix4("transfrom_matrix", test_transform.get_transform());
 	test_shader->uniformMatrix4("projection_matrix", test_camera.get_projection());
 	test_shader->uniformMatrix4("camera_matrix", test_camera.get_transform());
+	test_texture->use_texture(GL_TEXTURE0);
 	test_mesh.mesh_draw();
 	win.refresh();
 }
@@ -157,15 +163,20 @@ void manger::engine_update() {
 void manger::engine_input_handel() {
 
 	screen& win = screen::get_instance();
+	/* i shoud move this to camera and just call camera.input() */
 	if (win.is_key_pressed(GLFW_KEY_LEFT)) {
-		std::cout << "Left Key is pressed " << std::endl;
 		vec3 left = test_camera.get_camera_left();
-		test_camera.move_camera(left, 0.5f / 60.0f);
+		test_camera.move_camera(left, 0.5f);
 	}
 	if (win.is_key_pressed(GLFW_KEY_RIGHT)) {
-		std::cout << "Right Key is pressed " << std::endl;
 	    vec3 right = test_camera.get_camera_right();
-		test_camera.move_camera(right, 0.5f / 60.0f);
+		test_camera.move_camera(right, 0.5f);
 	}
 
+	if (win.is_key_pressed(GLFW_KEY_UP)) {
+		test_camera.move_camera(test_camera.camera_forward, 0.5f);
+	}
+	if (win.is_key_pressed(GLFW_KEY_DOWN)) {
+		test_camera.move_camera(test_camera.camera_forward * (-1.0f), 0.5f);
+	}
 }
