@@ -7,6 +7,7 @@
 
 #include "resouceloader.h"
 #include "rendertools.h"
+#include "material.h"
 
 #include <unordered_map>
 class shader
@@ -28,6 +29,11 @@ class shader
 		void uniform3f(const std::string& uniform, vec3 v);
 		void uniformMatrix4(const std::string& uniform, mat4x4 m);
 		
+		virtual void uniforms_update(const mat4x4& cam_projection, const mat4x4& cam_transform, 
+									 const mat4x4& obj_transform, material* obj_material) {
+
+		};
+
 		void bind_shader();
 
 	private:

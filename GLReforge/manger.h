@@ -7,6 +7,7 @@
 #include "shader.h" // test
 #include "transform.h" // test
 #include "texture.h" // test
+#include "material.h"//test
 #include "camera.h"
 
 #define FRAMCAP 1.0/60.0
@@ -55,10 +56,9 @@ class manger
 
 		/* the scene */
 		mesh test_mesh;
-		shader* test_shader;
 		transform test_transform;
 		camera test_camera;
-		texture* test_texture;
+		material* test_material;
 		GLfloat test_global;
 };
 

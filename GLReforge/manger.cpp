@@ -2,6 +2,7 @@
 #include "rendertools.h"
 #include "resouceloader.h"
 #include "vertex.h" // just for testing
+#include "simpleshader.h" // for testing
 
 #include <iostream>
 #include <vector>
@@ -39,22 +40,22 @@ void manger::engine_initialize() {
 	if (!resouceloader::load_mesh("models/test_model.gltf", &test_mesh)){
 		exit(0);
 	}
-	test_texture = new texture(GL_TEXTURE_2D, "defaults/default_uv_texture.jpg");
-	if (!test_texture->load_texture()) {
-		exit(0);
-	}
+	test_material = new material();
 
 	/* this stupid */
 	
-	std::string vertex_src    = resouceloader::load_shader_source("basicprogram.vert");
-	std::string fragement_src = resouceloader::load_shader_source("basicprogram.frag");
-	test_shader = new shader();
-	test_shader->add_vertex_shader(vertex_src);
-	test_shader->add_fragement_shader(fragement_src);
-	test_shader->compile_program();
-	test_shader->add_uniform("transfrom_matrix");
-	test_shader->add_uniform("projection_matrix");
-	test_shader->add_uniform("camera_matrix");
+	//std::string vertex_src    = resouceloader::load_shader_source("basicprogram.vert");
+	//std::string fragement_src = resouceloader::load_shader_source("basicprogram.frag");
+	//test_shader = new shader();
+	//test_shader->add_vertex_shader(vertex_src);
+	//test_shader->add_fragement_shader(fragement_src);
+	//test_shader->compile_program();
+	//test_shader->add_uniform("transfrom_matrix");
+	//test_shader->add_uniform("projection_matrix");
+	//test_shader->add_uniform("camera_matrix");
+
+	/* initiate shader */
+	simpleshader& test_simpleshader = simpleshader::get_instance();
 
 	test_global = 0.0f;
 	test_transform.rotation(0.0f, 180.0f, 0.0f);
@@ -133,13 +134,12 @@ void manger::engine_run() {
 }
 void manger::engine_render() {
 
-	screen& win = screen::get_instance();
+	screen& win = screen::get_instance(); 
+	simpleshader& test_simpleshader = simpleshader::get_instance();
 	rendertools::clear_screen();
-	test_shader->bind_shader();
-	test_shader->uniformMatrix4("transfrom_matrix", test_transform.get_transform());
-	test_shader->uniformMatrix4("projection_matrix", test_camera.get_projection());
-	test_shader->uniformMatrix4("camera_matrix", test_camera.get_transform());
-	test_texture->use_texture(GL_TEXTURE0);
+	test_simpleshader.bind_shader();
+	test_simpleshader.uniforms_update(test_camera.get_projection(), test_camera.get_transform(), 
+									  test_transform.get_transform(), test_material);
 	test_mesh.mesh_draw();
 	win.refresh();
 }

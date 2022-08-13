@@ -44,6 +44,12 @@
     <ClCompile Include="texture.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="simpleshader.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="material.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -120,6 +126,12 @@
       <Filter>stb</Filter>
     </ClInclude>
     <ClInclude Include="texture.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleshader.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
       <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>

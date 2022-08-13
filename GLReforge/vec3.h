@@ -30,14 +30,14 @@ class vec3
 	public:
 		void negative(); /* remove this later */
 		void normalize();
-
+		
 		GLfloat length();
 		GLfloat length_square();
 		GLfloat dot_product(const vec3& b)const;
 
 		vec3 cross(const vec3& v)const;
 		vec3 rotate(GLfloat angleinradiant, const vec3& axis)const;
-
+		vec3 normalized();
 
 	public:
 		GLfloat x;

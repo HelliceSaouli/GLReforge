@@ -64,6 +64,7 @@ void vec3::normalize() {
 	z /= magnitud;
 }
 
+
 GLfloat vec3::length() {
 	return sqrt(x * x + y * y + z * z);
 }
@@ -84,6 +85,11 @@ vec3 vec3::cross(const vec3& v)const {
 	c.z = x * v.y - y * v.x;
 
 	return c;
+}
+
+vec3 vec3::normalized() {
+	GLfloat magnitud = length();
+	return vec3(x / magnitud, y / magnitud, z / magnitud);
 }
 
 vec3 vec3::rotate(GLfloat angleinradiant, const vec3& axis)const {
