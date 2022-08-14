@@ -78,7 +78,7 @@ vec3 transform::get_scale()const {
 }
 
 vec3 transform::get_forward_vector()const {
-	return vec3(rotate_matrix.mat[2], rotate_matrix.mat[6], rotate_matrix.mat[10])
+	return vec3(rotate_matrix.mat[2], rotate_matrix.mat[6], rotate_matrix.mat[10]);
 }
 
 mat4x4  transform::get_rotator()const {
