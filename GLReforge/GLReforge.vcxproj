@@ -154,11 +154,13 @@
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="lightsource.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manger.cpp" />
     <ClCompile Include="mat4x4.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="pointlight.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="rendertools.cpp" />
     <ClCompile Include="resouceloader.cpp" />
@@ -174,10 +176,12 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="lightsource.h" />
     <ClInclude Include="manger.h" />
     <ClInclude Include="mat4x4.h" />
     <ClInclude Include="material.h" />
     <ClInclude Include="mesh.h" />
+    <ClInclude Include="pointlight.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="rendertools.h" />
     <ClInclude Include="resouceloader.h" />

@@ -50,6 +50,12 @@
     <ClCompile Include="material.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="lightsource.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="pointlight.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -132,6 +138,12 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="material.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="lightsource.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="pointlight.h">
       <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>

@@ -93,7 +93,7 @@ vec3 vec3::normalized() {
 }
 
 vec3 vec3::rotate(GLfloat angleinradiant, const vec3& axis)const {
-	// TODO: need to implement quaternion
+	// TODO: need to implement quaternion---> done
 	GLfloat sinhalfangle = (GLfloat)sin(angleinradiant / 2.0f);
 	GLfloat coshalfangle = (GLfloat)cos(angleinradiant / 2.0f);
 

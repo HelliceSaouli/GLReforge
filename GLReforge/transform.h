@@ -26,7 +26,13 @@ class transform
 		/* get world transfrom, or local ?*/
 		vec3 get_location()const;
 		vec3 get_scale()const;
+
+		/* this will return the z axis */
+		vec3 get_forward_vector()const;
+
+		/* return the full rotation matrix */
 		mat4x4  get_rotator()const;
+
 
 		/*get the full transform */
 		mat4x4 get_transform()const;
