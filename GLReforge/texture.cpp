@@ -23,7 +23,8 @@ GLboolean texture::load_texture() {
 	glGenTextures(1, &texture_object);
 	glBindTexture(texture_target, texture_object);
 	if (texture_target == GL_TEXTURE_2D) {
-		glTexImage2D(texture_target, 0, GL_RGB, width, heigh, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);
+		/* Gamma correction */
+		glTexImage2D(texture_target, 0, GL_SRGB, width, heigh, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);
 	}
 	else{
 		std::cout << " Support for target texture " << texture_target << "is not implemented yet" << std::endl;

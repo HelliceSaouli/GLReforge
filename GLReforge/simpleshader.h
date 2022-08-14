@@ -29,5 +29,10 @@ class simpleshader : public shader
 
 		void uniforms_update(const mat4x4& cam_projection, const mat4x4& cam_transform,
 			const mat4x4& obj_transform,  material* obj_material) override;
+
+		void set_ambient_light(GLfloat x, GLfloat y, GLfloat z);
+	private:
+		vec3 ambient_light;
+
 };
 
