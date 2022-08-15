@@ -2,6 +2,7 @@
 
 // in  vec3 fragcolor;
 in  vec2 uv_0;
+in  vec3 normal_0;
 
 out vec4 color;
 

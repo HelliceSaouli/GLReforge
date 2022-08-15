@@ -54,8 +54,11 @@ GLboolean resouceloader::load_mesh(const std::string& path, mesh* object) {
 		const aiVector3D* pPos = &(paiMesh->mVertices[i]);
 		const aiVector3D* pTexCoord = paiMesh->HasTextureCoords(0) ? &(paiMesh->mTextureCoords[0][i]) : 
 																					new aiVector3D(0.0f, 0.0f, 0.0f);
-		
-		buffer.push_back(vertex(vec3(pPos->x, pPos->y, pPos->z), vec3(pTexCoord->x, pTexCoord->y, 0.0f)));
+		const aiVector3D* pNormal = &(paiMesh->mNormals[i]);
+
+		buffer.push_back(vertex(vec3(pPos->x, pPos->y, pPos->z), 
+							    vec3(pTexCoord->x, pTexCoord->y, 0.0f),
+								vec3(pNormal->x, pNormal->y, pNormal->z)));
 	}
 
 

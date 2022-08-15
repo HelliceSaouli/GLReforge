@@ -13,6 +13,12 @@ vertex::vertex(const vec3& position, const vec3& uv) {
 	vertex_texture_uv = uv;
 }
 
+vertex::vertex(const vec3& position, const vec3& uv, const vec3& normal) {
+	vertex_position = position;
+	vertex_texture_uv = uv;
+	vertex_normal = normal;
+}
+
 vertex::~vertex() {
 
 }
@@ -33,6 +39,14 @@ vec3 vertex::get_vertex_uv()const {
 	return vertex_texture_uv;
 }
 
+void vertex::set_vertex_normal(const vec3& normal) {
+	 vertex_normal = normal;
+}
+
+vec3 vertex::get_vertex_normal()const {
+	return vertex_normal;
+}
+
 GLfloat* vertex::vertecies_to_float(const std::vector<vertex>& buffer, GLuint buffer_size) {
 
 	GLfloat* vb = new GLfloat[buffer_size];
@@ -45,6 +59,11 @@ GLfloat* vertex::vertecies_to_float(const std::vector<vertex>& buffer, GLuint bu
 		// UV
 		vb[i * vertex_size + 3] = buffer[i].get_vertex_uv().x;
 		vb[i * vertex_size + 4] = buffer[i].get_vertex_uv().y;
+
+		//normal
+		vb[i * vertex_size + 5] = buffer[i].get_vertex_normal().x;
+		vb[i * vertex_size + 6] = buffer[i].get_vertex_normal().y;
+		vb[i * vertex_size + 7] = buffer[i].get_vertex_normal().z;
 	}
 	return vb;
 }

@@ -38,9 +38,11 @@ void mesh::glmemcpy(const std::vector<vertex>& vertrices, const std::vector<GLui
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)0);
 	glEnableVertexAttribArray(0); /* position*/
 
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1); /* uv */
 
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(2); /* normal*/
 	
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, number_of_indices * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
 	/* unbind the vao*/

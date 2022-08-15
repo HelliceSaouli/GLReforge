@@ -5,7 +5,7 @@
 /* explicitly calling the base class constractor for safety reasons */
 simpleshader::simpleshader() :shader{} {
 
-	ambient_light = vec3(0.2f, 0.2f, 0.2f);
+	ambient_light = vec3(0.8f, 0.8f, 0.8f);
 	std::string vertex_src = resouceloader::load_shader_source("basicprogram.vert");
 	std::string fragement_src = resouceloader::load_shader_source("basicprogram.frag");
 	add_vertex_shader(vertex_src);
