@@ -1,6 +1,8 @@
 #pragma once
 #include "shader.h"
 
+#include "pointlight.h"
+
 class simpleshader : public shader
 {
 	protected:
@@ -27,8 +29,8 @@ class simpleshader : public shader
 			return instance;
 		}
 
-		void uniforms_update(const mat4x4& cam_projection, const mat4x4& cam_transform,
-			const mat4x4& obj_transform,  material* obj_material) override;
+		 void uniforms_update(const mat4x4& cam_projection, const mat4x4& cam_transform,
+			const mat4x4& obj_transform,  material* obj_material, std::vector<lightsource*> lights) override;
 
 		void set_ambient_light(GLfloat x, GLfloat y, GLfloat z);
 	private:

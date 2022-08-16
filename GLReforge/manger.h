@@ -8,6 +8,7 @@
 #include "transform.h" // test
 #include "texture.h" // test
 #include "material.h"//test
+#include "pointlight.h" // test
 #include "camera.h"
 
 #define FRAMCAP 1.0/60.0
@@ -59,6 +60,7 @@ class manger
 		transform test_transform;
 		camera test_camera;
 		material* test_material;
+		std::vector<lightsource*> lights;
 		GLfloat test_global;
 };
 

@@ -8,8 +8,11 @@
 #include "resouceloader.h"
 #include "rendertools.h"
 #include "material.h"
+#include "lightsource.h"
 
 #include <unordered_map>
+#include <vector>
+
 class shader
 {
 	public:
@@ -30,7 +33,7 @@ class shader
 		void uniformMatrix4(const std::string& uniform, mat4x4 m);
 		
 		virtual void uniforms_update(const mat4x4& cam_projection, const mat4x4& cam_transform, 
-									 const mat4x4& obj_transform, material* obj_material) {
+									 const mat4x4& obj_transform, material* obj_material, std::vector<lightsource*> lights) {
 
 		};
 

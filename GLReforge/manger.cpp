@@ -37,10 +37,17 @@ void manger::engine_initialize() {
 	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
 	test_camera.set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
 
+	/* mesh */
 	if (!resouceloader::load_mesh("models/test_model.gltf", &test_mesh)){
 		exit(0);
 	}
+	/* material */
 	test_material = new material();
+
+	/* light */
+	pointlight* point_source = new pointlight(1.0f, 0.027f, 0.0028f); /* 20 unit cover distance */
+	point_source->set_position(0.0f, 10.0f, 0.0f);
+	lights.push_back(point_source);
 
 	/* this stupid */
 	
@@ -139,7 +146,7 @@ void manger::engine_render() {
 	rendertools::clear_screen();
 	test_simpleshader.bind_shader();
 	test_simpleshader.uniforms_update(test_camera.get_projection(), test_camera.get_transform(), 
-									  test_transform.get_transform(), test_material);
+									  test_transform.get_transform(), test_material, lights);
 	test_mesh.mesh_draw();
 	win.refresh();
 }
