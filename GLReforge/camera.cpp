@@ -14,6 +14,14 @@ void camera::set_camera_position(GLfloat x, GLfloat y, GLfloat z) {
 	camera_position = vec3(x, y, z);
 }
 
+void camera::camera_look_at(const vec3& target) {
+	camera_forward = target - camera_position;
+	camera_forward.normalize();
+
+	camera_update_transform();
+
+}
+
 void camera::move_camera(vec3 direction, GLfloat distance) {
 	camera_position = camera_position + direction * distance;
 }

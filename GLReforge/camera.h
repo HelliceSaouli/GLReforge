@@ -15,7 +15,7 @@ class camera
 	public:
 		void set_camera_projection(GLfloat fov, GLfloat aratio, GLfloat near, GLfloat far);
 		void set_camera_position(GLfloat x, GLfloat y, GLfloat z);
-
+		void camera_look_at(const vec3& target);
 		/* move camera according to a given direction and distance*/
 		void move_camera(vec3 direction, GLfloat distance);
 

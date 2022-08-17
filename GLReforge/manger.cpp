@@ -36,9 +36,10 @@ void manger::engine_initialize() {
 
 	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
 	test_camera.set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
-	test_camera.set_camera_position(0.0f, 0.0f, -5.0f);
+	test_camera.set_camera_position(0.0f, -11, -40.0f);
+	test_camera.camera_look_at(vec3(0.0f, 11.0f, 20.0f));
 	/* mesh */
-	if (!resouceloader::load_mesh("models/test_model.gltf", &test_mesh)){
+	if (!resouceloader::load_mesh("models/test_model_2.gltf", &test_mesh)){
 		exit(0);
 	}
 	/* material */
