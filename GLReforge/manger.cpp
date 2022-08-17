@@ -36,7 +36,7 @@ void manger::engine_initialize() {
 
 	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
 	test_camera.set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
-
+	test_camera.set_camera_position(0.0f, 0.0f, -5.0f);
 	/* mesh */
 	if (!resouceloader::load_mesh("models/test_model.gltf", &test_mesh)){
 		exit(0);
@@ -65,7 +65,7 @@ void manger::engine_initialize() {
 	simpleshader& test_simpleshader = simpleshader::get_instance();
 
 	test_global = 0.0f;
-	test_transform.rotation(0.0f, 180.0f, 0.0f);
+    // test_transform.rotation(0.0f, 0.0f, 180.0f);
 }
 
 void manger::engine_start() {
@@ -160,8 +160,8 @@ void manger::engine_clean_destroy() {
 }
 
 void manger::engine_update() {
-	test_global += 1.0f / 60.0f;
-	test_transform.translate(sin(test_global), 0.0f, 10.0f);
+	// test_global += 1.0f / 60.0f;
+	// test_transform.translate(sin(test_global), 0.0f, 10.0f);
 	// test_transform.scale(sin(test_global), sin(test_global), sin(test_global));
 	test_camera.camera_update_transform();
 }
@@ -185,5 +185,20 @@ void manger::engine_input_handel() {
 	}
 	if (win.is_key_pressed(GLFW_KEY_DOWN)) {
 		test_camera.move_camera(test_camera.camera_forward * (-1.0f), 0.5f);
+	}
+
+
+	if (win.is_key_pressed(GLFW_KEY_Q)) {
+		test_camera.camera_add_input_yaw(1.0f, 0.5f);
+	}
+	if (win.is_key_pressed(GLFW_KEY_D)) {
+		test_camera.camera_add_input_yaw(-1.0f, 0.5f);
+	}
+
+	if (win.is_key_pressed(GLFW_KEY_Z)) {
+		test_camera.camera_add_input_pitch(1.0f, 0.5f);
+	}
+	if (win.is_key_pressed(GLFW_KEY_S)) {
+		test_camera.camera_add_input_pitch(-1.0f, 0.5f);
 	}
 }

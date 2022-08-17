@@ -4,6 +4,7 @@ camera::camera() {
 	camera_position = vec3(0.0f, 0.0f, 0.0f);
     camera_up       = vec3(0.0f, 1.0f, 0.0f);
 	camera_forward  = vec3(0.0f, 0.0f, 1.0f);
+	camera_transform = mat4x4::identity();
 }
 
 camera::~camera() {
@@ -28,15 +29,17 @@ vec3 camera::get_camera_right() {
 	right.normalize();
 	return right;
 }
-
+//TODO fix the bug gumble look at 180
 void camera::camera_add_input_pitch(GLfloat senstive, GLfloat amount) {
 	GLfloat pitch = senstive * amount * TORADIEN;
 	vec3    yaxis = vec3(0.0f, 1.0f, 0.0f);
 
 	vec3    haxis  = yaxis.cross(camera_forward);
+	haxis.normalize();
 	camera_forward = camera_forward.rotate(pitch, haxis);
 	camera_forward.normalize();
 	camera_up = camera_forward.cross(haxis);
+	camera_up.normalize();
 }
 
 
@@ -45,9 +48,11 @@ void camera::camera_add_input_yaw(GLfloat senstive, GLfloat amount) {
 	vec3    yaxis = vec3(0.0f, 1.0f, 0.0f);
 
 	vec3    haxis = yaxis.cross(camera_forward);
+	haxis.normalize();
 	camera_forward = camera_forward.rotate(yaw, yaxis);
 	camera_forward.normalize();
 	camera_up = camera_forward.cross(haxis);
+	camera_up.normalize();
 }
 
 
@@ -67,23 +72,23 @@ void camera::set_camera_projection(GLfloat fov, GLfloat aratio, GLfloat near, GL
 void camera::camera_update_transform() {
 	vec3 right = get_camera_right();
 	camera_transform.mat[0] = right.x;
-	camera_transform.mat[4] = right.y;
-	camera_transform.mat[8] = right.z;
-	camera_transform.mat[12] = camera_position.x;
+	camera_transform.mat[1] = right.y;
+	camera_transform.mat[2] = right.z;
+	camera_transform.mat[3] = 0.0f;
 
-	camera_transform.mat[1] = camera_up.x;
+	camera_transform.mat[4] = camera_up.x;
 	camera_transform.mat[5] = camera_up.y;
-	camera_transform.mat[9] = camera_up.z;
-	camera_transform.mat[13] = camera_position.y;
+	camera_transform.mat[6] = camera_up.z;
+	camera_transform.mat[7] = 0.0f;
 
-	camera_transform.mat[2] = camera_forward.x;
-	camera_transform.mat[6] = camera_forward.y;
+	camera_transform.mat[8] = camera_forward.x;
+	camera_transform.mat[9] = camera_forward.y;
 	camera_transform.mat[10] = camera_forward.z;
-	camera_transform.mat[14] = camera_position.z;
+	camera_transform.mat[11] = 0.0f;
 
 
-	camera_transform.mat[3] = 0.0;
-	camera_transform.mat[7] = 0.0;
-	camera_transform.mat[11] = 0.0;
+	camera_transform.mat[12] = -right.dot_product(camera_position);
+	camera_transform.mat[13] = -camera_up.dot_product(camera_position);
+	camera_transform.mat[14] = -camera_forward.dot_product(camera_position);
 	camera_transform.mat[15] = 1.0;
 }

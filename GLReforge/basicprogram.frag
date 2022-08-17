@@ -32,5 +32,5 @@ void main (){
 		diffuse_color = lightcolor * diffuse_intensity * diffuse_factor;
 	}
 	vec3 total_light = (ambient_color + diffuse_color ) * attenuation; 
-	color = vec4(total_light, 1.0) * texture(diffuse, uv_0);
+	color =  texture(diffuse, uv_0);
 }

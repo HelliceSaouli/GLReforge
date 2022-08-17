@@ -30,7 +30,14 @@ mat4x4::~mat4x4() {
 
 }
 
-
+mat4x4 mat4x4::identity() {
+	mat4x4 idn(0.0f);
+	idn.mat[0] = 1.0;
+	idn.mat[5] = 1.0;
+	idn.mat[10] = 1.0;
+	idn.mat[15] = 1.0;
+	return idn;
+}
 mat4x4 mat4x4::operator *(const mat4x4& b)const {
 	mat4x4 result(0.0f);
 

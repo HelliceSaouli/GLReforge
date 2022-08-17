@@ -14,11 +14,12 @@ class mat4x4
 			   GLfloat m10, GLfloat m11, GLfloat m12, GLfloat m13,
 			   GLfloat m20, GLfloat m21, GLfloat m22, GLfloat m23,
 			   GLfloat m30, GLfloat m31, GLfloat m32, GLfloat m33);
+
 		~mat4x4();
 
     public:
 		mat4x4 operator *(const mat4x4& b)const;
-
+		static mat4x4 identity();
 		friend std::ostream& operator << (std::ostream& out, const mat4x4& v)
 		{
 			return (out << v.mat[0] << ", " << v.mat[4] << ", " << v.mat[8] << ", "  <<  v.mat[12] << std::endl
