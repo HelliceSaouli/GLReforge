@@ -36,8 +36,8 @@ void manger::engine_initialize() {
 
 	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
 	test_camera.set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
-	test_camera.set_camera_position(0.0f, -11, -40.0f);
-	test_camera.camera_look_at(vec3(0.0f, 11.0f, 20.0f));
+	test_camera.set_camera_position(0.0f, 11.0f, -1.0f);
+    test_camera.camera_look_at(vec3(0.0f, 11.0f, 20.0f));
 	/* mesh */
 	if (!resouceloader::load_mesh("models/test_model_2.gltf", &test_mesh)){
 		exit(0);
@@ -46,8 +46,9 @@ void manger::engine_initialize() {
 	test_material = new material();
 
 	/* light */
-	pointlight* point_source = new pointlight(1.0f, 0.027f, 0.0028f); /* 20 unit cover distance */
+	pointlight* point_source = new pointlight(1.0f, 0.027f, 0.0028f, 0.0f); /* 20 unit cover distance */
 	point_source->set_position(0.0f, 10.0f, 0.0f);
+	point_source->set_color(0.75f, 0.25f, 0.1f);
 	lights.push_back(point_source);
 
 	/* this stupid */
@@ -66,7 +67,7 @@ void manger::engine_initialize() {
 	simpleshader& test_simpleshader = simpleshader::get_instance();
 
 	test_global = 0.0f;
-    // test_transform.rotation(0.0f, 0.0f, 180.0f);
+    test_transform.rotation(0.0f, 180.0f, 0.0f);
 }
 
 void manger::engine_start() {
@@ -146,8 +147,7 @@ void manger::engine_render() {
 	simpleshader& test_simpleshader = simpleshader::get_instance();
 	rendertools::clear_screen();
 	test_simpleshader.bind_shader();
-	test_simpleshader.uniforms_update(test_camera.get_projection(), test_camera.get_transform(), 
-									  test_transform.get_transform(), test_material, lights);
+	test_simpleshader.uniforms_update(test_camera, test_transform.get_transform(), test_material, lights);
 	test_mesh.mesh_draw();
 	win.refresh();
 }
@@ -161,9 +161,9 @@ void manger::engine_clean_destroy() {
 }
 
 void manger::engine_update() {
-	// test_global += 1.0f / 60.0f;
-	// test_transform.translate(sin(test_global), 0.0f, 10.0f);
-	// test_transform.scale(sin(test_global), sin(test_global), sin(test_global));
+	test_global += 1.0f / 60.0f;
+	test_transform.translate(sin(test_global), 0.0f, 10.0f);
+   // test_transform.scale(sin(test_global), sin(test_global), sin(test_global));
 	test_camera.camera_update_transform();
 }
 

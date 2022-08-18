@@ -25,6 +25,11 @@ class camera
 		/* get the local left */
 		vec3 get_camera_right();
 
+		/* get the camera current location */
+		vec3 get_camera_current_location()const {
+			return camera_position;
+		}
+
 		/*rotate on x with angle in degree this like UE4*/
 		void camera_add_input_pitch(GLfloat senstive, GLfloat amount);
 

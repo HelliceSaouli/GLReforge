@@ -1,6 +1,7 @@
 #include "simpleshader.h"
 
 #include "resouceloader.h"
+#include "pointlight.h"
 
 /* explicitly calling the base class constractor for safety reasons */
 simpleshader::simpleshader() :shader{} {
@@ -16,7 +17,7 @@ simpleshader::simpleshader() :shader{} {
 	add_uniform("transfrom_matrix");
 	add_uniform("projection_matrix");
 	add_uniform("camera_matrix");
-
+	add_uniform("camera_world_location");
 	/* simple point lighting with one source */
 	add_uniform("ambient");
 	add_uniform("lightcolor");
@@ -27,12 +28,13 @@ simpleshader::simpleshader() :shader{} {
 }
 
 
-void simpleshader::uniforms_update(const mat4x4& cam_projection, const mat4x4& cam_transform,
-	const mat4x4& obj_transform, material* obj_material, std::vector<lightsource*> lights) {
+void simpleshader::uniforms_update(const camera& cam, const mat4x4& obj_transform, material* obj_material,
+									std::vector<lightsource*> lights) {
 	/* simple shader only with one light source */
 	uniformMatrix4("transfrom_matrix", obj_transform);
-	uniformMatrix4("projection_matrix", cam_projection);
-	uniformMatrix4("camera_matrix", cam_transform);
+	uniformMatrix4("projection_matrix", cam.get_projection());
+	uniformMatrix4("camera_matrix", cam.get_transform());
+	uniform3f("camera_world_location", cam.get_camera_current_location());
 
 	pointlight* point_light = dynamic_cast<pointlight*>(lights[0]);
 	uniform3f("ambient", ambient_light);

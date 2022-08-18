@@ -7,7 +7,7 @@
 class pointlight : public lightsource
 {
 	public:
-		pointlight(GLfloat c, GLfloat l, GLfloat q);
+		pointlight(GLfloat c, GLfloat l, GLfloat q, GLfloat r);
 		~pointlight();
 
 		void update() override;
@@ -15,6 +15,7 @@ class pointlight : public lightsource
 		GLfloat constant;
 		GLfloat linear;
 		GLfloat quadratic;
+		GLfloat max_range;
 		
 };
 

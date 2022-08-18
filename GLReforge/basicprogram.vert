@@ -23,5 +23,5 @@ void main(){
 	/* simplepoint light geometry */
     wordpos = (transfrom_matrix * vec4(position, 1.0f)).xyz;
 	uv_0 = uv;
-	normal_0 = normalize((transfrom_matrix * vec4(normal, 0.0f))).xyz;
+	normal_0 = inverse(transpose(mat3(transfrom_matrix))) * normal;
 }
