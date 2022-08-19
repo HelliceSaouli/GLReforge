@@ -28,8 +28,8 @@ class simpleshader : public shader
 			return instance;
 		}
 
-		 void uniforms_update(const camera& cam, const mat4x4& obj_transform,  material* obj_material,
-							  std::vector<lightsource*> lights) override;
+		 void uniforms_update(camera* cam, const mat4x4& obj_transform, material* obj_material,
+							 std::vector<lightsource*> lights) override;
 
 		void set_ambient_light(GLfloat x, GLfloat y, GLfloat z);
 	private:

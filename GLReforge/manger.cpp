@@ -1,9 +1,7 @@
 #include "manger.h"
 #include "rendertools.h"
 #include "resouceloader.h"
-#include "vertex.h" // just for testing
-#include "simpleshader.h" // for testing
-
+#include "simpleshader.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -21,53 +19,45 @@ void manger::engine_initialize() {
 	}
 	rendertools::init_gl_states();
 	rendertools::opengl_info();
+	/* init the singlton */
+	simpleshader& asimpleshader = simpleshader::get_instance();
 
-	/* initialize scene testing */
-	//test_mesh.create_geometry_buffer();
-	//std::vector<vertex> buffer;
-	//std::vector<GLuint> indices;
-	//buffer.push_back(vertex(-1.0f, -1.0f, 0.0f));
-	//indices.push_back(0);
-	//buffer.push_back(vertex( 0.0f,  1.0f, 0.0f));
-	//indices.push_back(1);
-	//buffer.push_back(vertex( 1.0f, -1.0f, 0.0f));
-	//indices.push_back(2);
-	//test_mesh.glmemcpy(buffer, indices);
-
+	cam = new camera();
 	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
-	test_camera.set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
-	test_camera.set_camera_position(0.0f, 11.0f, -1.0f);
-    test_camera.camera_look_at(vec3(0.0f, 11.0f, 20.0f));
+	cam->set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
+	cam->set_camera_position(0.0f, 11.0f, -1.0f);
+	cam->camera_look_at(vec3(0.0f, 11.0f, 20.0f));
+
+	mesh* test_mesh = new mesh();
 	/* mesh */
-	if (!resouceloader::load_mesh("models/test_model_2.gltf", &test_mesh)){
+	if (!resouceloader::load_mesh("models/test_model_2.gltf", test_mesh)){
 		exit(0);
 	}
 	/* material */
-	test_material = new material();
+	material* test_material = new material();
 
 	/* light */
 	pointlight* point_source = new pointlight(1.0f, 0.027f, 0.0028f, 0.0f); /* 20 unit cover distance */
 	point_source->set_position(0.0f, 10.0f, 0.0f);
 	point_source->set_color(0.75f, 0.25f, 0.1f);
+	std::vector<lightsource*> lights;
 	lights.push_back(point_source);
 
-	/* this stupid */
-	
-	//std::string vertex_src    = resouceloader::load_shader_source("basicprogram.vert");
-	//std::string fragement_src = resouceloader::load_shader_source("basicprogram.frag");
-	//test_shader = new shader();
-	//test_shader->add_vertex_shader(vertex_src);
-	//test_shader->add_fragement_shader(fragement_src);
-	//test_shader->compile_program();
-	//test_shader->add_uniform("transfrom_matrix");
-	//test_shader->add_uniform("projection_matrix");
-	//test_shader->add_uniform("camera_matrix");
-
-	/* initiate shader */
-	simpleshader& test_simpleshader = simpleshader::get_instance();
-
+	/* simple transform */
 	test_global = 0.0f;
-    test_transform.rotation(0.0f, 180.0f, 0.0f);
+	transform* test_transform = new  transform();
+	// test_transform->rotation(0.0f, 180.0f, 0.0f);
+
+	/* create a mesh render */
+	meshrenderer* mesh_renderer = new meshrenderer(test_mesh, test_material, lights, cam);
+
+	/* create  entities*/
+	root = new entity(GL_TRUE);
+	entity* model = new entity();
+	model->set_transform(test_transform);
+	model->add_entity_componenet(mesh_renderer);
+	root->add_entity_child(model);
+	// don't forget to clean all this pointers later ?
 }
 
 void manger::engine_start() {
@@ -144,11 +134,8 @@ void manger::engine_run() {
 void manger::engine_render() {
 
 	screen& win = screen::get_instance(); 
-	simpleshader& test_simpleshader = simpleshader::get_instance();
 	rendertools::clear_screen();
-	test_simpleshader.bind_shader();
-	test_simpleshader.uniforms_update(test_camera, test_transform.get_transform(), test_material, lights);
-	test_mesh.mesh_draw();
+	root->render();
 	win.refresh();
 }
 
@@ -162,9 +149,10 @@ void manger::engine_clean_destroy() {
 
 void manger::engine_update() {
 	test_global += 1.0f / 60.0f;
-	test_transform.translate(sin(test_global), 0.0f, 10.0f);
+	//test_transform.translate(sin(test_global), 0.0f, 10.0f);
    // test_transform.scale(sin(test_global), sin(test_global), sin(test_global));
-	test_camera.camera_update_transform();
+	cam->camera_update_transform();
+	root->update();
 }
 
 
@@ -173,33 +161,34 @@ void manger::engine_input_handel() {
 	screen& win = screen::get_instance();
 	/* i shoud move this to camera and just call camera.input() */
 	if (win.is_key_pressed(GLFW_KEY_LEFT)) {
-		vec3 left = test_camera.get_camera_left();
-		test_camera.move_camera(left, 0.5f);
+		vec3 left = cam->get_camera_left();
+		cam->move_camera(left, 0.5f);
 	}
 	if (win.is_key_pressed(GLFW_KEY_RIGHT)) {
-	    vec3 right = test_camera.get_camera_right();
-		test_camera.move_camera(right, 0.5f);
+	    vec3 right = cam->get_camera_right();
+		cam->move_camera(right, 0.5f);
 	}
 
 	if (win.is_key_pressed(GLFW_KEY_UP)) {
-		test_camera.move_camera(test_camera.camera_forward, 0.5f);
+		cam->move_camera(cam->camera_forward, 0.5f);
 	}
 	if (win.is_key_pressed(GLFW_KEY_DOWN)) {
-		test_camera.move_camera(test_camera.camera_forward * (-1.0f), 0.5f);
+		cam->move_camera(cam->camera_forward * (-1.0f), 0.5f);
 	}
 
 
 	if (win.is_key_pressed(GLFW_KEY_Q)) {
-		test_camera.camera_add_input_yaw(1.0f, 0.5f);
+		cam->camera_add_input_yaw(1.0f, 0.5f);
 	}
 	if (win.is_key_pressed(GLFW_KEY_D)) {
-		test_camera.camera_add_input_yaw(-1.0f, 0.5f);
+		cam->camera_add_input_yaw(-1.0f, 0.5f);
 	}
 
 	if (win.is_key_pressed(GLFW_KEY_Z)) {
-		test_camera.camera_add_input_pitch(1.0f, 0.5f);
+		cam->camera_add_input_pitch(1.0f, 0.5f);
 	}
 	if (win.is_key_pressed(GLFW_KEY_S)) {
-		test_camera.camera_add_input_pitch(-1.0f, 0.5f);
+		cam->camera_add_input_pitch(-1.0f, 0.5f);
 	}
+	root->input();
 }

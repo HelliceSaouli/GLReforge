@@ -11,6 +11,10 @@
 #include "pointlight.h" // test
 #include "camera.h"
 
+#include "entity.h"
+#include "component.h"
+#include "meshrenderer.h"
+
 #define FRAMCAP 1.0/60.0
 
 class manger
@@ -56,11 +60,8 @@ class manger
 		GLboolean can_engine_render;
 
 		/* the scene */
-		mesh test_mesh;
-		transform test_transform;
-		camera test_camera;
-		material* test_material;
-		std::vector<lightsource*> lights;
+		entity* root;
+		camera* cam;
 		GLfloat test_global;
 };
 

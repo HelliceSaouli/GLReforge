@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="component.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="lightsource.cpp" />
     <ClCompile Include="main.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="mat4x4.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="mesh.cpp" />
+    <ClCompile Include="meshrenderer.cpp" />
     <ClCompile Include="pointlight.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="rendertools.cpp" />
@@ -174,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="component.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="lightsource.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="mat4x4.h" />
     <ClInclude Include="material.h" />
     <ClInclude Include="mesh.h" />
+    <ClInclude Include="meshrenderer.h" />
     <ClInclude Include="pointlight.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="rendertools.h" />

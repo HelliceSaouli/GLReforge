@@ -56,6 +56,12 @@
     <ClCompile Include="pointlight.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="component.cpp">
+      <Filter>entities</Filter>
+    </ClCompile>
+    <ClCompile Include="meshrenderer.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -84,6 +90,9 @@
     </Filter>
     <Filter Include="stb">
       <UniqueIdentifier>{503754fd-63bd-4f68-b59f-b19e1dfdcfd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{bb61883d-b999-491a-9003-5977d52911c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +154,12 @@
     </ClInclude>
     <ClInclude Include="pointlight.h">
       <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>entities</Filter>
+    </ClInclude>
+    <ClInclude Include="meshrenderer.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

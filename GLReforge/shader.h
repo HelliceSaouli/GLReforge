@@ -33,7 +33,7 @@ class shader
 		void uniform3f(const std::string& uniform, vec3 v);
 		void uniformMatrix4(const std::string& uniform, mat4x4 m);
 		
-		virtual void uniforms_update(const camera& cam, const mat4x4& obj_transform, material* obj_material, 
+		virtual void uniforms_update(camera* cam, const mat4x4& obj_transform, material* obj_material, 
 									 std::vector<lightsource*> lights) {
 
 		};
