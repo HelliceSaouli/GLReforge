@@ -158,37 +158,6 @@ void manger::engine_update() {
 
 void manger::engine_input_handel() {
 
-	screen& win = screen::get_instance();
-	/* i shoud move this to camera and just call camera.input() */
-	if (win.is_key_pressed(GLFW_KEY_LEFT)) {
-		vec3 left = cam->get_camera_left();
-		cam->move_camera(left, 0.5f);
-	}
-	if (win.is_key_pressed(GLFW_KEY_RIGHT)) {
-	    vec3 right = cam->get_camera_right();
-		cam->move_camera(right, 0.5f);
-	}
-
-	if (win.is_key_pressed(GLFW_KEY_UP)) {
-		cam->move_camera(cam->camera_forward, 0.5f);
-	}
-	if (win.is_key_pressed(GLFW_KEY_DOWN)) {
-		cam->move_camera(cam->camera_forward * (-1.0f), 0.5f);
-	}
-
-
-	if (win.is_key_pressed(GLFW_KEY_Q)) {
-		cam->camera_add_input_yaw(1.0f, 0.5f);
-	}
-	if (win.is_key_pressed(GLFW_KEY_D)) {
-		cam->camera_add_input_yaw(-1.0f, 0.5f);
-	}
-
-	if (win.is_key_pressed(GLFW_KEY_Z)) {
-		cam->camera_add_input_pitch(1.0f, 0.5f);
-	}
-	if (win.is_key_pressed(GLFW_KEY_S)) {
-		cam->camera_add_input_pitch(-1.0f, 0.5f);
-	}
+	cam->input();
 	root->input();
 }

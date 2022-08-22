@@ -1,4 +1,6 @@
 #include "camera.h"
+#include "screen.h"
+
 #include "defines.h"
 camera::camera() {
 	camera_position = vec3(0.0f, 0.0f, 0.0f);
@@ -105,4 +107,39 @@ void camera::camera_update_transform() {
 	camera_transform.mat[7] = 0.0f;
 	camera_transform.mat[11] = 0.0f;
 	camera_transform.mat[15] = 1.0;
+}
+
+void camera::input() {
+	screen& win = screen::get_instance();
+	/* i shoud move this to camera and just call camera.input() */
+	if (win.is_key_pressed(GLFW_KEY_LEFT)) {
+		vec3 left = get_camera_left();
+		move_camera(left, 0.5f);
+	}
+	if (win.is_key_pressed(GLFW_KEY_RIGHT)) {
+		vec3 right = get_camera_right();
+		move_camera(right, 0.5f);
+	}
+
+	if (win.is_key_pressed(GLFW_KEY_UP)) {
+		move_camera(camera_forward, 0.5f);
+	}
+	if (win.is_key_pressed(GLFW_KEY_DOWN)) {
+		move_camera(camera_forward * (-1.0f), 0.5f);
+	}
+
+
+	if (win.is_key_pressed(GLFW_KEY_Q)) {
+		camera_add_input_yaw(1.0f, 0.5f);
+	}
+	if (win.is_key_pressed(GLFW_KEY_D)) {
+		camera_add_input_yaw(-1.0f, 0.5f);
+	}
+
+	if (win.is_key_pressed(GLFW_KEY_Z)) {
+		camera_add_input_pitch(1.0f, 0.5f);
+	}
+	if (win.is_key_pressed(GLFW_KEY_S)) {
+		camera_add_input_pitch(-1.0f, 0.5f);
+	}
 }

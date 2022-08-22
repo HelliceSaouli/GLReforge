@@ -29,6 +29,7 @@ void entity::input() {
 
 void entity::update() {
 
+	entity_transfrom->update_transform();
 	for (auto comp : entity_components) {
 		comp->update();
 	}

@@ -23,6 +23,7 @@ class transform
 		mat4x4 compute_scale(GLfloat x, GLfloat y, GLfloat z)const;
 		void scale(GLfloat x, GLfloat y, GLfloat z);
 
+		void update_transform();
 		/* get world transfrom, or local ?*/
 		vec3 get_location()const;
 		vec3 get_scale()const;
@@ -41,5 +42,6 @@ class transform
 		mat4x4 translate_matrix;
 		mat4x4 scale_matrix;
 		mat4x4 rotate_matrix;
+		mat4x4 full_transform;
 };
 

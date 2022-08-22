@@ -19,6 +19,8 @@ class camera
 		/* move camera according to a given direction and distance*/
 		void move_camera(vec3 direction, GLfloat distance);
 
+		/* void handle camerainput free movement */
+		void input();
 		/* get the local right */
 		vec3 get_camera_left();
 

@@ -86,5 +86,9 @@ mat4x4  transform::get_rotator()const {
 }
 
 mat4x4 transform::get_transform()const {
-	return  scale_matrix  * rotate_matrix * translate_matrix;
+	return  full_transform;
+}
+
+void transform::update_transform() {
+	full_transform = scale_matrix * rotate_matrix * translate_matrix;
 }
