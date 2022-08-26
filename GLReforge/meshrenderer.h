@@ -1,30 +1,28 @@
 #pragma once
 #include "component.h"
 
-#include "material.h"
-#include "mesh.h"
+#include "staticmodel.h"
 
 #include "lightsource.h"
 #include "pointlight.h"
 
 #include "camera.h"
+#include "shader.h"
 
 #include <vector>
 
 class meshrenderer :public component
 {
 	public:
-		meshrenderer(mesh* _entity_mesh, material* _mesh_material, std::vector<lightsource*> _lights, camera* _cam);
+		meshrenderer(staticmodel* _model, std::vector<lightsource*> _lights, camera* _cam);
 		~meshrenderer();
 	
 	public:
-		void render() override;
+		void render(shader* shader_model) override;
 
 	private:
-		material* mesh_material;
-		mesh* entity_mesh;
+		staticmodel* model;
 		std::vector<lightsource*> lights;
 		camera* cam;
-
 };
 

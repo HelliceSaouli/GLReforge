@@ -14,5 +14,5 @@ void component::update() {
 }
 
 
-void component::render() {
+void component::render(shader* model_shader) {
 }

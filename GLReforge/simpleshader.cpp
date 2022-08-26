@@ -28,7 +28,7 @@ simpleshader::simpleshader() :shader{} {
 }
 
 
-void simpleshader::uniforms_update(camera* cam, const mat4x4& obj_transform, material* obj_material,
+void simpleshader::uniforms_update(camera* cam, const mat4x4& obj_transform,
 								   std::vector<lightsource*> lights) {
 	/* simple shader only with one light source */
 	uniformMatrix4("transfrom_matrix", obj_transform);
@@ -43,8 +43,6 @@ void simpleshader::uniforms_update(camera* cam, const mat4x4& obj_transform, mat
 	uniform1f("constant", point_light->constant);
 	uniform1f("linear", point_light->linear);
 	uniform1f("quadratic", point_light->quadratic);
-
-	obj_material->material_use_albedo_texture();
 }
 
 void simpleshader::set_ambient_light(GLfloat x, GLfloat y, GLfloat z) {

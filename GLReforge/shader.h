@@ -7,7 +7,6 @@
 
 #include "resouceloader.h"
 #include "rendertools.h"
-#include "material.h"
 #include "lightsource.h"
 #include "camera.h"
 
@@ -33,7 +32,7 @@ class shader
 		void uniform3f(const std::string& uniform, vec3 v);
 		void uniformMatrix4(const std::string& uniform, mat4x4 m);
 		
-		virtual void uniforms_update(camera* cam, const mat4x4& obj_transform, material* obj_material, 
+		virtual void uniforms_update(camera* cam, const mat4x4& obj_transform, 
 									 std::vector<lightsource*> lights) {
 
 		};

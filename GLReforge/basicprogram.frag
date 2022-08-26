@@ -50,4 +50,5 @@ void main (){
 
 	vec3 total_light = (ambient_color + diffuse_color + specular_color) * attenuation; 
 	color = vec4(total_light, 1.0) * texture(diffuse, uv_0);
+//	color = vec4(0.5f, 0.5f, 0.5f, 1.0f);
 }

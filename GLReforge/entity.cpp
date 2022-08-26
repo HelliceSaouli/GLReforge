@@ -1,5 +1,5 @@
 #include "entity.h"
-
+#include "simpleshader.h"
 
 entity::entity(GLboolean _is_root) {
 	is_root = _is_root;
@@ -40,9 +40,10 @@ void entity::update() {
 }
 
 void entity::render() {
-	
+
+	simpleshader& asimpleshader = simpleshader::get_instance();
 	for (auto comp : entity_components) {
-		comp->render();
+		comp->render(&asimpleshader);
 	}
 
 	for (auto child : childrens) {

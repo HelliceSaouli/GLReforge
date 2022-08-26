@@ -1,4 +1,5 @@
 #include "texture.h"
+#include "resouceloader.h"
 
 #include <iostream>
 texture::texture(GLenum target, const std::string& _image_name) {

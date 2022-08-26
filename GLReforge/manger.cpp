@@ -24,17 +24,15 @@ void manger::engine_initialize() {
 
 	cam = new camera();
 	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
-	cam->set_camera_projection(70.0f, aspecration, 0.1f, 1000.0f);
-	cam->set_camera_position(0.0f, 11.0f, -1.0f);
-	cam->camera_look_at(vec3(0.0f, 11.0f, 20.0f));
+	cam->set_camera_projection(70.0f, aspecration, 0.1f, 10000.0f);
+	cam->set_camera_position(0.0f, 0.0, -1.0f);
+	cam->camera_look_at(vec3(0.0f, 0.0, 20.0f));
 
-	mesh* test_mesh = new mesh();
+	staticmodel *test_mesh = new staticmodel();
 	/* mesh */
-	if (!resouceloader::load_mesh("models/test_model_2.gltf", test_mesh)){
+	if (!resouceloader::load_static_model("models/FlightHelmet/FlightHelmet.gltf", test_mesh)){
 		exit(0);
 	}
-	/* material */
-	material* test_material = new material();
 
 	/* light */
 	pointlight* point_source = new pointlight(1.0f, 0.027f, 0.0028f, 0.0f); /* 20 unit cover distance */
@@ -46,17 +44,19 @@ void manger::engine_initialize() {
 	/* simple transform */
 	test_global = 0.0f;
 	transform* test_transform = new  transform();
-	// test_transform->rotation(0.0f, 180.0f, 0.0f);
+   // test_transform->scale(0.05f, 0.05f, 0.05f); /* for sponza */
 
 	/* create a mesh render */
-	meshrenderer* mesh_renderer = new meshrenderer(test_mesh, test_material, lights, cam);
+	meshrenderer* mesh_renderer = new meshrenderer(test_mesh, lights, cam);
 
 	/* create  entities*/
 	root = new entity(GL_TRUE);
 	entity* model = new entity();
+
 	model->set_transform(test_transform);
 	model->add_entity_componenet(mesh_renderer);
 	root->add_entity_child(model);
+	
 	// don't forget to clean all this pointers later ?
 }
 
@@ -126,11 +126,10 @@ void manger::engine_run() {
 		if (can_engine_render) {
 			engine_render();
 			frames++;
-		}
-		
+		}		
 	}
-
 }
+
 void manger::engine_render() {
 
 	screen& win = screen::get_instance(); 

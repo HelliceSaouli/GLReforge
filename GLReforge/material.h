@@ -18,7 +18,9 @@ class material
 		void material_use_albedo_texture();
 	private:
 		/* TODO : implement a cleaning up function where you free texture from GPU memory */
-		std::vector<texture*> albedo;
+		/*  mesh can have multiple albedo this is not supported */
+
+		texture* albedo; 
 		GLboolean is_default_loaded;
 };
 

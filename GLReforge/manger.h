@@ -2,12 +2,10 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
+#include "staticmodel.h"
 #include "screen.h"
-#include "mesh.h"
 #include "shader.h" // test
 #include "transform.h" // test
-#include "texture.h" // test
-#include "material.h"//test
 #include "pointlight.h" // test
 #include "camera.h"
 

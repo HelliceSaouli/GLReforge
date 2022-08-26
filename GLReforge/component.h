@@ -2,6 +2,7 @@
 
 #include "GL/glew.h"
 #include "transform.h"
+#include "shader.h"
 
 class component
 {
@@ -14,7 +15,7 @@ class component
 		virtual void init_component();
 		virtual void input();
 		virtual void update();
-		virtual void render();
+		virtual void render(shader* model_shader);
 
 		void set_transform(transform* obj_transfrom) {
 			entity_transform = obj_transfrom;

@@ -62,6 +62,9 @@
     <ClCompile Include="meshrenderer.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="staticmodel.cpp">
+      <Filter>mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="meshrenderer.h">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="staticmodel.h">
+      <Filter>mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

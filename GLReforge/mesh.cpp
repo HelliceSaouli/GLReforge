@@ -3,34 +3,31 @@
 mesh::mesh() {
 	vertex_buffer_object = 0;
 	vertex_array_object = 0;
+	element_buffer_object = 0;
 	buffer_size = 0;
+	material_index = 0;
 }
 
 mesh::~mesh() {
 
 }
 
-void mesh::create_geometry_buffer() {
-	
-	/* VAO */
-	glGenVertexArrays(1, &vertex_array_object);
-	/* VBO */
-	glGenBuffers(1, &vertex_buffer_object);
-	/* EBO */
-	glGenBuffers(1, &element_buffer_object);
-}
 
-void mesh::glmemcpy(const std::vector<vertex>& vertrices, const std::vector<GLuint>& indices) {
-
+void mesh::create_geometry_buffer(const std::vector<vertex>& vertrices, const std::vector<GLuint>& indices) {
 	
 	buffer_size = (GLuint)vertrices.size() * vertex::vertex_size;
 	number_of_indices = (GLuint)indices.size();
 
 	GLfloat* buffer = vertex::vertecies_to_float(vertrices, buffer_size);
 
-	glBindVertexArray(vertex_buffer_object);
+
+	glGenVertexArrays(1, &vertex_array_object);
+	glBindVertexArray(vertex_array_object);
+
+	glGenBuffers(1, &vertex_buffer_object);
 	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_object);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer_object);
+
+	
 
 	/* copying data and telling opengl how to interpret it */
 	glBufferData(GL_ARRAY_BUFFER, buffer_size * sizeof(GLfloat), buffer, GL_STATIC_DRAW);
@@ -44,9 +41,14 @@ void mesh::glmemcpy(const std::vector<vertex>& vertrices, const std::vector<GLui
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2); /* normal*/
 	
+	glGenBuffers(1, &element_buffer_object);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer_object);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, number_of_indices * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
 	/* unbind the vao*/
 	glBindVertexArray(0);
+	
+	/* clean cpu memory */
+	delete buffer;
 }
 
 
