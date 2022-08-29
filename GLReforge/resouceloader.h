@@ -18,7 +18,7 @@ class resouceloader
 public:
 	static std::string load_shader_source(const std::string& path);
 	static GLboolean load_static_model(const std::string& path, staticmodel* model);
-	static GLubyte* load_texture(const std::string& path, GLint* width, GLint* Heigh);
+	static GLubyte* load_texture(const std::string& path, GLint* width, GLint* Heigh, GLint* nrChannels);
 	static void free_texture_data(GLubyte* data);
 };
 

@@ -30,7 +30,7 @@ void manger::engine_initialize() {
 
 	staticmodel *test_mesh = new staticmodel();
 	/* mesh */
-	if (!resouceloader::load_static_model("models/FlightHelmet/FlightHelmet.gltf", test_mesh)){
+	if (!resouceloader::load_static_model("models/sponza-gltf-pbr/Sponza.gltf", test_mesh)){
 		exit(0);
 	}
 

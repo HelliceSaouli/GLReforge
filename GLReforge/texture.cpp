@@ -14,8 +14,8 @@ texture::~texture() {
 GLboolean texture::load_texture() {
 	GLint width; 
 	GLint heigh;
-
-	GLubyte* image_data = resouceloader::load_texture(image_name, &width, &heigh);
+	GLint nrChannels;
+	GLubyte* image_data = resouceloader::load_texture(image_name, &width, &heigh, &nrChannels);
 
 	if (image_data == nullptr) {
 		std::cout << " Failed to load the current texture image \" " << image_name <<"\" "<< std::endl;
@@ -25,16 +25,25 @@ GLboolean texture::load_texture() {
 	glBindTexture(texture_target, texture_object);
 	if (texture_target == GL_TEXTURE_2D) {
 		/* Gamma correction */
-		glTexImage2D(texture_target, 0, GL_SRGB, width, heigh, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);
+		if (nrChannels == 3) {
+			glTexImage2D(texture_target, 0, GL_SRGB, width, heigh, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);
+		}
+		else if(nrChannels == 4){
+
+			glTexImage2D(texture_target, 0, GL_SRGB_ALPHA, width, heigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
+		}
+		
 	}
 	else{
 		std::cout << " Support for target texture " << texture_target << "is not implemented yet" << std::endl;
 		return GL_FALSE;
 	}
+	glTexParameteri(texture_target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(texture_target, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
 	glTexParameterf(texture_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameterf(texture_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(texture_target, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(texture_target, GL_TEXTURE_WRAP_T, GL_CLAMP);
+
 
 	glBindTexture(texture_target, 0);
 	resouceloader::free_texture_data(image_data);

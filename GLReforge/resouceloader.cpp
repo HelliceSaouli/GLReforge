@@ -31,7 +31,6 @@ std::string resouceloader::load_shader_source(const std::string& path) {
 GLboolean resouceloader::load_static_model(const std::string& path, staticmodel* model) {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path,
-		aiProcess_FlipUVs |
 		aiProcess_Triangulate |
 		aiProcess_JoinIdenticalVertices |
 		aiProcess_SortByPType);
@@ -103,10 +102,9 @@ GLboolean resouceloader::load_static_model(const std::string& path, staticmodel*
 	return GL_TRUE;
 }
 
-GLubyte* resouceloader::load_texture(const std::string& path, GLint* width, GLint* Heigh) {
-	GLint nrChannels; // I don't need this now
+GLubyte* resouceloader::load_texture(const std::string& path, GLint* width, GLint* Heigh, GLint* nrChannels) {
 	stbi_set_flip_vertically_on_load(1); /* since opengl use images from buttom to top*/
-	return stbi_load(path.c_str(), width, Heigh, &nrChannels, 0); /* mybe i  should cast this ?? */
+	return stbi_load(path.c_str(), width, Heigh, nrChannels, 0); /* mybe i  should cast this ?? */
 }
 
 void resouceloader::free_texture_data(GLubyte* data) {
