@@ -91,9 +91,9 @@ GLboolean resouceloader::load_static_model(const std::string& path, staticmodel*
 		const aiMaterial* pMaterial = scene->mMaterials[index];
 		
 		//fill the albedo texture, assuming each material has one albedo texture
-		if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
+		if (pMaterial->GetTextureCount(aiTextureType_BASE_COLOR) > 0) {
 			aiString texturepath;
-			if (pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
+			if (pMaterial->GetTexture(aiTextureType_BASE_COLOR, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
 				std::string fullpath = diractory + "/" + texturepath.data;
 				model->set_albedo_texture(fullpath, index);
 			}

@@ -5,8 +5,7 @@
 #include "vec3.h"
 #include "mat4x4.h"
 
-#include "resouceloader.h"
-#include "rendertools.h"
+
 #include "lightsource.h"
 #include "camera.h"
 

@@ -15,7 +15,7 @@ class component
 		virtual void init_component();
 		virtual void input();
 		virtual void update();
-		virtual void render(shader* model_shader);
+		virtual void render();
 
 		void set_transform(transform* obj_transfrom) {
 			entity_transform = obj_transfrom;

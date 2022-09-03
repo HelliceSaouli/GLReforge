@@ -1,5 +1,8 @@
 #include "shader.h"
 
+#include "resouceloader.h" /* this header is causing some circular dependency */
+#include "rendertools.h"
+
 #include <cstdlib>
 shader::shader() {
 	/* create the program */

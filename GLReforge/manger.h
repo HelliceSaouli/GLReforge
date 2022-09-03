@@ -7,6 +7,7 @@
 #include "shader.h" // test
 #include "transform.h" // test
 #include "pointlight.h" // test
+#include "sunlight.h" // test
 #include "camera.h"
 
 #include "entity.h"

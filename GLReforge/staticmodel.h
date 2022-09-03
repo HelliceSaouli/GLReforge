@@ -19,6 +19,11 @@ class staticmodel
 		void use_material_albedo(GLuint indx);
 		void draw_model_part(GLuint indx);
 		void init_model(GLuint nbr_of_meshs, GLuint nbr_of_matrs);
+
+		void init_material_shader();
+		void bind_material_shader(GLuint indx);
+		void update_material_uniform_shader(GLuint indx, camera* cam, const mat4x4& obj_transform,
+											std::vector<lightsource*> lights);
 	private:
 		std::vector<mesh* > model_parts;
 		std::vector<material* > material_parts;

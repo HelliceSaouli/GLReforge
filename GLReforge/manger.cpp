@@ -1,7 +1,7 @@
 #include "manger.h"
 #include "rendertools.h"
 #include "resouceloader.h"
-#include "simpleshader.h"
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -19,8 +19,7 @@ void manger::engine_initialize() {
 	}
 	rendertools::init_gl_states();
 	rendertools::opengl_info();
-	/* init the singlton */
-	simpleshader& asimpleshader = simpleshader::get_instance();
+
 
 	cam = new camera();
 	GLfloat aspecration = (GLfloat)(win.get_window_width() / win.get_window_hight());
@@ -48,6 +47,7 @@ void manger::engine_initialize() {
 
 	/* create a mesh render */
 	meshrenderer* mesh_renderer = new meshrenderer(test_mesh, lights, cam);
+	mesh_renderer->init_component(); /* should it be here ?*/
 
 	/* create  entities*/
 	root = new entity(GL_TRUE);

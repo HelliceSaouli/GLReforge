@@ -18,7 +18,8 @@ class meshrenderer :public component
 		~meshrenderer();
 	
 	public:
-		void render(shader* shader_model) override;
+		void render() override;
+		void init_component() override;
 
 	private:
 		staticmodel* model;

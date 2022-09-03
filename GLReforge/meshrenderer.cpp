@@ -1,7 +1,5 @@
 #include "meshrenderer.h"
 
-#include "simpleshader.h"
-
 meshrenderer::meshrenderer(staticmodel* _model, std::vector<lightsource*> _lights, camera* _cam) {
 
 	model = _model;
@@ -18,10 +16,15 @@ meshrenderer::~meshrenderer() {
 
 }
 
-void meshrenderer::render(shader* shader_model) {
+void meshrenderer::init_component(){
+	model->init_material_shader();
+}
+
+void meshrenderer::render() {
+	/* TODO: shader should be part of material */
 	for (GLuint index = 0; index < model->number_of_meshes; index++) {
-		shader_model->bind_shader();
-		shader_model->uniforms_update(cam, entity_transform->get_transform(), lights);
+		model->bind_material_shader(index);
+		model->update_material_uniform_shader(index, cam, entity_transform->get_transform(), lights);
 		model->use_material_albedo(index);
 		model->draw_model_part(index);
 	}

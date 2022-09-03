@@ -65,6 +65,12 @@
     <ClCompile Include="staticmodel.cpp">
       <Filter>mesh</Filter>
     </ClCompile>
+    <ClCompile Include="sunlight.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+    <ClCompile Include="basicpbr.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -167,6 +173,12 @@
     <ClInclude Include="staticmodel.h">
       <Filter>mesh</Filter>
     </ClInclude>
+    <ClInclude Include="sunlight.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="basicpbr.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GLReforge.rc" />
@@ -176,6 +188,12 @@
       <Filter>programs</Filter>
     </None>
     <None Include="basicprogram.vert">
+      <Filter>programs</Filter>
+    </None>
+    <None Include="simplebpr.frag">
+      <Filter>programs</Filter>
+    </None>
+    <None Include="simplebpr.vert">
       <Filter>programs</Filter>
     </None>
   </ItemGroup>

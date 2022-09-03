@@ -45,3 +45,18 @@ void staticmodel::use_material_albedo(GLuint indx) {
 void staticmodel::draw_model_part(GLuint indx) {
 	model_parts[indx]->mesh_draw();
 }
+
+void staticmodel::init_material_shader() {
+	for (GLuint idx = 0; idx < number_of_materials; idx++) {
+		material_parts[idx]->init_shader();
+	}
+}
+
+void staticmodel::bind_material_shader(GLuint indx) {
+	material_parts[model_parts[indx]->material_index]->bind_material_shader();
+}
+
+void staticmodel::update_material_uniform_shader(GLuint indx, camera* cam, const mat4x4& obj_transform,
+	std::vector<lightsource*> lights) {
+	material_parts[model_parts[indx]->material_index]->update_material_uniform_shader(cam, obj_transform, lights);
+}

@@ -41,9 +41,8 @@ void entity::update() {
 
 void entity::render() {
 
-	simpleshader& asimpleshader = simpleshader::get_instance();
 	for (auto comp : entity_components) {
-		comp->render(&asimpleshader);
+		comp->render();
 	}
 
 	for (auto child : childrens) {

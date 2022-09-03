@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basicpbr.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -170,12 +171,14 @@
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="simpleshader.cpp" />
     <ClCompile Include="staticmodel.cpp" />
+    <ClCompile Include="sunlight.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="transform.cpp" />
     <ClCompile Include="vec3.cpp" />
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="basicpbr.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="defines.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="simpleshader.h" />
     <ClInclude Include="staticmodel.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="sunlight.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="transform.h" />
     <ClInclude Include="vec3.h" />
@@ -207,6 +211,8 @@
   <ItemGroup>
     <None Include="basicprogram.frag" />
     <None Include="basicprogram.vert" />
+    <None Include="simplebpr.frag" />
+    <None Include="simplebpr.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
