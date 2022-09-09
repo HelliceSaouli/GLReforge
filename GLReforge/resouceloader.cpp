@@ -31,6 +31,7 @@ std::string resouceloader::load_shader_source(const std::string& path) {
 GLboolean resouceloader::load_static_model(const std::string& path, staticmodel* model) {
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path,
+		aiProcess_CalcTangentSpace |
 		aiProcess_Triangulate |
 		aiProcess_JoinIdenticalVertices |
 		aiProcess_SortByPType);
@@ -56,10 +57,14 @@ GLboolean resouceloader::load_static_model(const std::string& path, staticmodel*
 			const aiVector3D* pTexCoord = paiMesh->HasTextureCoords(0) ? &(paiMesh->mTextureCoords[0][i]) :
 				new aiVector3D(0.0f, 0.0f, 0.0f);
 			const aiVector3D* pNormal = &(paiMesh->mNormals[i]);
+			const aiVector3D* ptangent = &(paiMesh->mTangents[i]);
+			const aiVector3D* pbitangent = &(paiMesh->mBitangents[i]);
 
 			buffer.push_back(vertex(vec3(pPos->x, pPos->y, pPos->z),
 				vec3(pTexCoord->x, pTexCoord->y, 0.0f),
-				vec3(pNormal->x, pNormal->y, pNormal->z)));
+				vec3(pNormal->x, pNormal->y, pNormal->z),
+				vec3(ptangent->x, ptangent->y, ptangent->z),
+				vec3(pbitangent->x, pbitangent->y, pbitangent->z)));
 		}
 
 		for (GLuint i = 0; i < paiMesh->mNumFaces; ++i) {
@@ -69,7 +74,6 @@ GLboolean resouceloader::load_static_model(const std::string& path, staticmodel*
 			indices.push_back(Face.mIndices[1]);
 			indices.push_back(Face.mIndices[2]);
 		}
-
 		// object->glmemcpy(buffer, indices);
 		model->add_mesh(paiMesh->mMaterialIndex, buffer, indices, index);
 	}
@@ -96,6 +100,14 @@ GLboolean resouceloader::load_static_model(const std::string& path, staticmodel*
 			if (pMaterial->GetTexture(aiTextureType_BASE_COLOR, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
 				std::string fullpath = diractory + "/" + texturepath.data;
 				model->set_albedo_texture(fullpath, index);
+			}
+		}
+
+		if (pMaterial->GetTextureCount(aiTextureType_NORMALS) > 0) {
+			aiString texturepath;
+			if (pMaterial->GetTexture(aiTextureType_NORMALS, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
+				std::string fullpath = diractory + "/" + texturepath.data;
+				model->set_normal_texture(fullpath, index);
 			}
 		}
 	}

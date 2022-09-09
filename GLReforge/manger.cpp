@@ -33,10 +33,11 @@ void manger::engine_initialize() {
 		exit(0);
 	}
 
+	
 	/* light */
-	pointlight* point_source = new pointlight(1.0f, 0.027f, 0.0028f, 0.0f); /* 20 unit cover distance */
-	point_source->set_position(0.0f, 10.0f, 0.0f);
-	point_source->set_color(0.75f, 0.25f, 0.1f);
+	pointlight* point_source = new pointlight(1.0f, 0.0014f, 0.000007f, 0.0f); /* 20 unit cover distance */
+	point_source->set_position(0.0f, 50.0f, 0.0f);
+	point_source->set_color(0.75f, 0.75f, 0.75f);
 	std::vector<lightsource*> lights;
 	lights.push_back(point_source);
 

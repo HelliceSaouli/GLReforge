@@ -26,8 +26,30 @@ class material
 		void update_material_uniform_shader(camera* cam, const mat4x4& obj_transform,
 			std::vector<lightsource*> light);
 
+		// albedo
 		void set_albedo_texture(const std::string& image_name);
 		void material_use_albedo_texture();
+
+		// metalic
+		void set_metalic_texture(const std::string& image_name);
+		void material_use_metalic_texture();
+		
+		// specular
+		void set_specular_texture(const std::string& image_name);
+		void material_use_specular_texture();
+
+		// roughness
+		void set_roughness_texture(const std::string& image_name);
+		void material_use_roughness_texture();
+
+		// AO
+		void set_ao_texture(const std::string& image_name);
+		void material_use_ao_texture();
+
+		// normal
+		void set_normal_texture(const std::string& image_name);
+		void material_use_normal_texture();
+
 	private:
 		/* TODO : implement a cleaning up function where you free texture from GPU memory */
 		/*  mesh can have multiple albedo this is not supported */
@@ -47,8 +69,18 @@ class material
 		GLfloat roughness;
 		GLfloat ambeintocclusion;
 		
-		/* the shader that uses material */
+		/* the shader that uses material for now i will support runtime branching 
+		   to build my uber shader pbr */
 		shader* material_shader;
-		GLboolean is_default_loaded;
+
+		/* material control uniforms */
+		GLint use_albedo_map;
+		GLint use_metalic_map;
+		GLint use_specular_map;
+		GLint use_roughness_map;
+		GLint use_ao_map;
+		GLint use_normal_map;
+
+		GLboolean is_default_loaded; /* remove it later */
 };
 

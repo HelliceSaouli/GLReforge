@@ -40,7 +40,13 @@ void mesh::create_geometry_buffer(const std::vector<vertex>& vertrices, const st
 
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(2); /* normal*/
-	
+
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)(8 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(3); /* tangent*/
+
+	glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, vertex::vertex_size * sizeof(GLfloat), (void*)(11 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(4); /* bitangent*/
+
 	glGenBuffers(1, &element_buffer_object);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer_object);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, number_of_indices * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);

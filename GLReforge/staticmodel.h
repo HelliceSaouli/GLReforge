@@ -15,8 +15,13 @@ class staticmodel
 		~staticmodel();
 	public:
 		void add_mesh(GLuint matindx, const std::vector<vertex> &buffer, const std::vector<GLuint> &indices, GLuint indx);
+		
 		void set_albedo_texture(std::string fullpath, GLuint indx);
 		void use_material_albedo(GLuint indx);
+
+		void set_normal_texture(std::string fullpath, GLuint indx);
+		void use_material_normal(GLuint indx);
+		
 		void draw_model_part(GLuint indx);
 		void init_model(GLuint nbr_of_meshs, GLuint nbr_of_matrs);
 

@@ -42,6 +42,16 @@ void staticmodel::use_material_albedo(GLuint indx) {
 	}	
 }
 
+void staticmodel::set_normal_texture(std::string fullpath, GLuint indx) {
+	material_parts[indx]->set_normal_texture(fullpath);
+}
+
+void staticmodel::use_material_normal(GLuint indx) {
+	if (model_parts[indx]->material_index < material_parts.size()) {
+		material_parts[model_parts[indx]->material_index]->material_use_normal_texture();
+	}
+}
+
 void staticmodel::draw_model_part(GLuint indx) {
 	model_parts[indx]->mesh_draw();
 }
