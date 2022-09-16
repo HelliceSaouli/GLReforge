@@ -41,6 +41,7 @@ GLboolean resouceloader::load_static_model(const std::string& path, staticmodel*
 		std::cout << "Failed to load the mesh \" " << path << " \" " << importer.GetErrorString() << std::endl;
 		return GL_FALSE;
 	}
+
 	model->init_model(scene->mNumMeshes, scene->mNumMaterials);
 	if (model == NULL) {
 		std::cout << " model pointer is null something is wrong" << std::endl;
@@ -100,6 +101,31 @@ GLboolean resouceloader::load_static_model(const std::string& path, staticmodel*
 			if (pMaterial->GetTexture(aiTextureType_BASE_COLOR, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
 				std::string fullpath = diractory + "/" + texturepath.data;
 				model->set_albedo_texture(fullpath, index);
+			}
+		}
+
+		if (pMaterial->GetTextureCount(aiTextureType_METALNESS) > 0) {
+			aiString texturepath;
+			if (pMaterial->GetTexture(aiTextureType_METALNESS, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
+				std::string fullpath = diractory + "/" + texturepath.data;
+				model->set_metalic_texture(fullpath, index);
+			}
+		}
+
+
+		if (pMaterial->GetTextureCount(aiTextureType_DIFFUSE_ROUGHNESS) > 0) {
+			aiString texturepath;
+			if (pMaterial->GetTexture(aiTextureType_DIFFUSE_ROUGHNESS, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
+				std::string fullpath = diractory + "/" + texturepath.data;
+				model->set_roughness_texture(fullpath, index);
+			}
+		}
+
+		if (pMaterial->GetTextureCount(aiTextureType_AMBIENT_OCCLUSION) > 0) {
+			aiString texturepath;
+			if (pMaterial->GetTexture(aiTextureType_AMBIENT_OCCLUSION, 0, &texturepath, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
+				std::string fullpath = diractory + "/" + texturepath.data;
+				model->set_ao_texture(fullpath, index);
 			}
 		}
 

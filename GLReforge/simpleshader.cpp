@@ -40,9 +40,9 @@ void simpleshader::uniforms_update(camera* cam, const mat4x4& obj_transform,
 	uniform3f("ambient", ambient_light);
 	uniform3f("lightcolor", point_light->get_color());
 
-	uniform3f("lightposition", point_light->get_position());
+	// uniform3f("lightposition", point_light->get_position());
 	// for testing i will attach light to camera this need to be done not here
-	//uniform3f("lightposition", cam->get_camera_current_location());
+	uniform3f("lightposition", cam->get_camera_current_location());
 
 	uniform1f("constant", point_light->constant);
 	uniform1f("linear", point_light->linear);

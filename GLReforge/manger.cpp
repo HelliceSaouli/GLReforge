@@ -44,7 +44,7 @@ void manger::engine_initialize() {
 	/* simple transform */
 	test_global = 0.0f;
 	transform* test_transform = new  transform();
-   // test_transform->scale(0.05f, 0.05f, 0.05f); /* for sponza */
+   // test_transform->rotation(90.0f, 0.0, 180.0f); /* for sponza */
 
 	/* create a mesh render */
 	meshrenderer* mesh_renderer = new meshrenderer(test_mesh, lights, cam);

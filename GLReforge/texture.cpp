@@ -27,15 +27,16 @@ GLboolean texture::load_texture() {
 		/* Gamma correction */
 		if (nrChannels == 1) {
 			glTexImage2D(texture_target, 0, GL_RED, width, heigh, 0, GL_RED, GL_UNSIGNED_BYTE, image_data);
+			glGenerateMipmap(GL_TEXTURE_2D); // this remove moire effect to some high degree
 		}
 		else if (nrChannels == 3) {
 			glTexImage2D(texture_target, 0, GL_SRGB, width, heigh, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);
+			glGenerateMipmap(GL_TEXTURE_2D); // this remove moire effect to some high degree
 		}
 		else if(nrChannels == 4){
-
 			glTexImage2D(texture_target, 0, GL_SRGB_ALPHA, width, heigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
+			glGenerateMipmap(GL_TEXTURE_2D); // this remove moire effect to some high degree
 		}
-		
 	}
 	else{
 		std::cout << " Support for target texture " << texture_target << "is not implemented yet" << std::endl;
@@ -52,7 +53,7 @@ GLboolean texture::load_texture() {
 		glTexParameteri(texture_target, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	}
 	
-	glTexParameterf(texture_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameterf(texture_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameterf(texture_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
@@ -76,16 +77,18 @@ GLboolean texture::load_normal_maps() {
 	glBindTexture(texture_target, texture_object);
 	if (texture_target == GL_TEXTURE_2D) {
 		glTexImage2D(texture_target, 0, GL_RGB, width, heigh, 0, GL_RGB, GL_UNSIGNED_BYTE, image_data);
+		glGenerateMipmap(GL_TEXTURE_2D); // this remove moire effect to some high degree
 	}
 	else {
 		std::cout << " Support for target texture " << texture_target << "is not implemented yet" << std::endl;
 		return GL_FALSE;
 	}
 
+	
 
 	glTexParameteri(texture_target, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(texture_target, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameterf(texture_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameterf(texture_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameterf(texture_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 

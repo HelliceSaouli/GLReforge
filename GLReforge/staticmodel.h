@@ -19,6 +19,16 @@ class staticmodel
 		void set_albedo_texture(std::string fullpath, GLuint indx);
 		void use_material_albedo(GLuint indx);
 
+		void set_metalic_texture(std::string fullpath, GLuint indx);
+		void use_material_metalic(GLuint indx);
+
+
+		void set_roughness_texture(std::string fullpath, GLuint indx);
+		void use_material_roughness(GLuint indx);
+
+		void set_ao_texture(std::string fullpath, GLuint indx);
+		void use_material_ao(GLuint indx);
+
 		void set_normal_texture(std::string fullpath, GLuint indx);
 		void use_material_normal(GLuint indx);
 		

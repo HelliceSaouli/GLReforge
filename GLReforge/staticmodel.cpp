@@ -20,6 +20,7 @@ void staticmodel::init_model(GLuint nbr_of_meshs, GLuint nbr_of_matrs) {
 		model_parts[idx] = new mesh();
 	}
 
+	
 	for (GLuint idx = 0; idx < number_of_materials; idx++) {
 		material_parts[idx] = new material();
 	}
@@ -52,12 +53,45 @@ void staticmodel::use_material_normal(GLuint indx) {
 	}
 }
 
+
+void staticmodel::set_metalic_texture(std::string fullpath, GLuint indx) {
+	material_parts[indx]->set_metalic_texture(fullpath);
+}
+
+void staticmodel::use_material_metalic(GLuint indx) {
+	if (model_parts[indx]->material_index < material_parts.size()) {
+		material_parts[model_parts[indx]->material_index]->material_use_metalic_texture();
+	}
+}
+
+
+void staticmodel::set_roughness_texture(std::string fullpath, GLuint indx) {
+	material_parts[indx]->set_roughness_texture(fullpath);
+}
+
+void staticmodel::use_material_roughness(GLuint indx) {
+	if (model_parts[indx]->material_index < material_parts.size()) {
+		material_parts[model_parts[indx]->material_index]->material_use_roughness_texture();
+	}
+}
+
+
+void staticmodel::set_ao_texture(std::string fullpath, GLuint indx) {
+	material_parts[indx]->set_ao_texture(fullpath);
+}
+
+void staticmodel::use_material_ao(GLuint indx) {
+	if (model_parts[indx]->material_index < material_parts.size()) {
+		material_parts[model_parts[indx]->material_index]->material_use_ao_texture();
+	}
+}
 void staticmodel::draw_model_part(GLuint indx) {
 	model_parts[indx]->mesh_draw();
 }
 
 void staticmodel::init_material_shader() {
 	for (GLuint idx = 0; idx < number_of_materials; idx++) {
+		std::cout << "The " << idx << " / " << number_of_materials << " shader initialized !!" << std::endl;
 		material_parts[idx]->init_shader();
 	}
 }

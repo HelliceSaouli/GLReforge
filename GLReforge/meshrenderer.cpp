@@ -26,6 +26,9 @@ void meshrenderer::render() {
 		model->bind_material_shader(index);
 		model->update_material_uniform_shader(index, cam, entity_transform->get_transform(), lights);
 		model->use_material_albedo(index);
+		model->use_material_metalic(index);
+		model->use_material_roughness(index);
+		model->use_material_ao(index);
 		model->use_material_normal(index);
 		model->draw_model_part(index);
 	}

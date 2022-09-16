@@ -57,7 +57,6 @@ class material
 		/* pbt texture map */
 		texture* albedomap;
 		texture* metalicmap;
-		texture* specularmap;
 		texture* roughnessmap;
 		texture* ambeintocclusionmap;
 		texture* normalmap;
@@ -65,7 +64,6 @@ class material
 		/* pbr single values */
 		vec3 albedo;
 		GLfloat metalic;
-		GLfloat specular;
 		GLfloat roughness;
 		GLfloat ambeintocclusion;
 		
@@ -76,7 +74,6 @@ class material
 		/* material control uniforms */
 		GLint use_albedo_map;
 		GLint use_metalic_map;
-		GLint use_specular_map;
 		GLint use_roughness_map;
 		GLint use_ao_map;
 		GLint use_normal_map;
