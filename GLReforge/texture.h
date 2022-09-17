@@ -13,8 +13,8 @@ class texture
 
 
 	public:
-		GLboolean load_texture();
-		GLboolean load_normal_maps();
+		GLboolean load_srgb_texture();
+		GLboolean load_non_srgb_maps();
 
 		void use_texture(GLenum texture_unit);
 	private:

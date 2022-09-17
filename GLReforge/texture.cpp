@@ -11,7 +11,7 @@ texture::~texture() {
 
 }
 /* TODO : call this load_texture2D and support mulitple texture target */
-GLboolean texture::load_texture() {
+GLboolean texture::load_srgb_texture() {
 	GLint width; 
 	GLint heigh;
 	GLint nrChannels;
@@ -63,7 +63,7 @@ GLboolean texture::load_texture() {
 	return GL_TRUE;
 }
 
-GLboolean texture::load_normal_maps() {
+GLboolean texture::load_non_srgb_maps() {
 	GLint width;
 	GLint heigh;
 	GLint nrChannels;

@@ -174,5 +174,6 @@ void main (){
 
 
 	Lo = ambient_final + (diffuse_brdf + brdf_specular) * light_radience * ndotl; 
+
 	color = vec4(Lo, alpha);
 }

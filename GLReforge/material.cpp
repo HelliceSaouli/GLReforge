@@ -5,7 +5,7 @@
 material::material() {
 	/*set up the albedo texture to default texture*/
 	albedomap = new texture(GL_TEXTURE_2D, "defaults/default_uv_texture.jpg");
-	albedomap->load_texture();
+	albedomap->load_srgb_texture();
 	is_default_loaded = GL_TRUE;
 
 	/* pbr single values */
@@ -34,7 +34,7 @@ void material::set_albedo_texture(const std::string& image_name) {
 	}
 	use_albedo_map = 1;
 	albedomap = new texture(GL_TEXTURE_2D, image_name);
-	albedomap->load_texture();
+	albedomap->load_srgb_texture();
 	
 }
 
@@ -45,7 +45,7 @@ void material::material_use_albedo_texture() {
 void material::set_metalic_texture(const std::string& image_name) {
 	use_metalic_map = 1;
 	metalicmap = new texture(GL_TEXTURE_2D, image_name);
-	metalicmap->load_texture();
+	metalicmap->load_non_srgb_maps();
 }
 
 void material::material_use_metalic_texture() {
@@ -58,7 +58,7 @@ void material::material_use_metalic_texture() {
 void material::set_roughness_texture(const std::string& image_name) {
 	use_roughness_map = 1;
 	roughnessmap = new texture(GL_TEXTURE_2D, image_name);
-	roughnessmap->load_texture();
+	roughnessmap->load_non_srgb_maps();
 }
 
 void material::material_use_roughness_texture() {
@@ -71,7 +71,7 @@ void material::material_use_roughness_texture() {
 void material::set_ao_texture(const std::string& image_name) {
 	use_ao_map = 1;
 	ambeintocclusionmap = new texture(GL_TEXTURE_2D, image_name);
-	ambeintocclusionmap->load_texture();
+	ambeintocclusionmap->load_non_srgb_maps();
 }
 
 void material::material_use_ao_texture() {
@@ -83,7 +83,7 @@ void material::material_use_ao_texture() {
 void material::set_normal_texture(const std::string& image_name) {
 	use_normal_map = 1;
 	normalmap = new texture(GL_TEXTURE_2D, image_name);
-	normalmap->load_normal_maps();
+	normalmap->load_non_srgb_maps();
 }
 
 void material::material_use_normal_texture() {
