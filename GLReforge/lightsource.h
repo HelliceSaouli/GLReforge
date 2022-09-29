@@ -20,7 +20,7 @@ class lightsource
 		void set_direction(GLfloat xangle, GLfloat yangle, GLfloat zangle);
 		void set_color(GLfloat x, GLfloat y, GLfloat z);
 
-		virtual void update() = 0; /* TODO for now thisfunction is just here */
+		virtual void update() = 0; /* TODO for now this function is just here */
 	private:
 		transform source_transform;
 		vec3 light_color;

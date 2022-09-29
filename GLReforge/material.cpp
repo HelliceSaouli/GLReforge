@@ -1,6 +1,7 @@
 #include "material.h"
 
-#include "simpleshader.h"
+// #include "simpleshader.h"
+#include "pbrdirectionallight.h"
 
 material::material() {
 	/*set up the albedo texture to default texture*/
@@ -93,7 +94,8 @@ void material::material_use_normal_texture() {
 }
 
 void material::init_shader() {
-	material_shader = &simpleshader::get_instance();
+	// material_shader = &simpleshader::get_instance();
+	material_shader = &pbrdirectionallight::get_instance();
 
 	if (material_shader == NULL) {
 		std::cout << "material shader is null" << std::endl;

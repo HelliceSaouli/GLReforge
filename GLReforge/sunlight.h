@@ -11,5 +11,8 @@ class sunlight : public lightsource
 		~sunlight();
 	public:
 		void update() override;
+
+	public:
+		GLfloat intensity;
 };
 

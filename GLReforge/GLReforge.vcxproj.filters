@@ -71,6 +71,9 @@
     <ClCompile Include="basicpbr.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="pbrdirectionallight.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -177,6 +180,9 @@
       <Filter>render</Filter>
     </ClInclude>
     <ClInclude Include="basicpbr.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="pbrdirectionallight.h">
       <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>

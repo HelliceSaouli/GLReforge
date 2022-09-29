@@ -163,6 +163,7 @@
     <ClCompile Include="material.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="meshrenderer.cpp" />
+    <ClCompile Include="pbrdirectionallight.cpp" />
     <ClCompile Include="pointlight.cpp" />
     <ClCompile Include="quaternion.cpp" />
     <ClCompile Include="rendertools.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="material.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="meshrenderer.h" />
+    <ClInclude Include="pbrdirectionallight.h" />
     <ClInclude Include="pointlight.h" />
     <ClInclude Include="quaternion.h" />
     <ClInclude Include="rendertools.h" />

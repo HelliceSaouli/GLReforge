@@ -38,13 +38,13 @@ layout (binding = 4) uniform sampler2D normalmap;
 const float oneoverpi = 0.318309886f;
 const float pi		  = 3.141592653f;
 
+
 vec3 lambert_diffuse(vec3 color_value, vec3 fernel, float metalic){
 
 	return (1.0f - fernel) * (1.0f - metalic) * color_value * oneoverpi;
 }
 
 float specular_d(vec3 h, vec3 n, float roughness){
-
 
 	float alpha = roughness * roughness;
 	float alpha_square = alpha * alpha;
@@ -156,16 +156,21 @@ void main (){
 
 	}
 
+	// for weed
+	if (alpha < 0.1f)
+		discard;
+
 	vec3 f0 = vec3(0.04f);
 	f0 = mix(f0, albedo_value, metalic_value);
 
 	float ndotl = max(dot(normalized_normal, light_direction), 0.0);
+
 	/* this should be changed */
 	vec3 ambient_final = ambient  * albedo_value * ambeintocclusion_value;
 
 	/* compute the actual lighting here */
 	vec3 Lo = vec3(0.0f);
-	vec3 light_radience =  lightcolor * 10.0f * attenuation;
+	vec3 light_radience =  lightcolor * 15.0f * attenuation;
 	float d = specular_d(half_vector_direction, normalized_normal, roughness_value); 
 	float g = specular_g(light_direction, view_direction, normalized_normal, roughness_value);
 	vec3  f = specular_f(f0, view_direction, half_vector_direction);

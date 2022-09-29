@@ -17,8 +17,6 @@ uniform mat4 transfrom_matrix;
 uniform mat4 projection_matrix;
 uniform mat4 camera_matrix;
 
-
-
 void main(){
 	gl_Position = projection_matrix * camera_matrix * transfrom_matrix * vec4(position, 1.0f);
     wordpos = (transfrom_matrix * vec4(position, 1.0f)).xyz;

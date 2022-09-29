@@ -7,6 +7,7 @@
 #include "camera.h"
 #include "lightsource.h"
 #include "pointlight.h"
+#include "sunlight.h"
 
 #include "shader.h"
 
