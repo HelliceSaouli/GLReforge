@@ -68,10 +68,10 @@
     <ClCompile Include="sunlight.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="basicpbr.cpp">
+    <ClCompile Include="pbrdirectionallight.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="pbrdirectionallight.cpp">
+    <ClCompile Include="shadowmap.cpp">
       <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -179,10 +179,10 @@
     <ClInclude Include="sunlight.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="basicpbr.h">
+    <ClInclude Include="pbrdirectionallight.h">
       <Filter>render</Filter>
     </ClInclude>
-    <ClInclude Include="pbrdirectionallight.h">
+    <ClInclude Include="shadowmap.h">
       <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>

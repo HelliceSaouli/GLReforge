@@ -152,7 +152,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="basicpbr.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="component.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -170,6 +169,7 @@
     <ClCompile Include="resouceloader.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="shadowmap.cpp" />
     <ClCompile Include="simpleshader.cpp" />
     <ClCompile Include="staticmodel.cpp" />
     <ClCompile Include="sunlight.cpp" />
@@ -179,7 +179,6 @@
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="basicpbr.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="component.h" />
     <ClInclude Include="defines.h" />
@@ -198,6 +197,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="shadowmap.h" />
     <ClInclude Include="simpleshader.h" />
     <ClInclude Include="staticmodel.h" />
     <ClInclude Include="stb_image.h" />

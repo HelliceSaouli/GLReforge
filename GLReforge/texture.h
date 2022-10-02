@@ -9,6 +9,11 @@ class texture
 {
 	public:
 		texture(GLenum target, const std::string& _image_name);
+
+		texture() {
+			/* general constractor */
+			/* helpfull to create depth maps or other maps*/
+		}; 
 		~texture();
 
 

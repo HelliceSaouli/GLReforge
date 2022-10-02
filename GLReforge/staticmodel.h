@@ -39,10 +39,15 @@ class staticmodel
 		void bind_material_shader(GLuint indx);
 		void update_material_uniform_shader(GLuint indx, camera* cam, const mat4x4& obj_transform,
 											std::vector<lightsource*> lights);
+
+		void set_receive_shadow(GLboolean val);
+		GLboolean is_receive_shadow()const;
+
 	private:
 		std::vector<mesh* > model_parts;
 		std::vector<material* > material_parts;
 		GLuint number_of_materials;
+		GLboolean receive_shadow; /* if the model is included in the shadowmap draw call */
 	public:
 		GLuint number_of_meshes;
 		

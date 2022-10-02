@@ -24,7 +24,7 @@ void staticmodel::init_model(GLuint nbr_of_meshs, GLuint nbr_of_matrs) {
 	for (GLuint idx = 0; idx < number_of_materials; idx++) {
 		material_parts[idx] = new material();
 	}
-
+	receive_shadow = GL_TRUE;
 }
 
 void staticmodel::add_mesh(GLuint matindx, const std::vector<vertex>& buffer, 
@@ -103,4 +103,13 @@ void staticmodel::bind_material_shader(GLuint indx) {
 void staticmodel::update_material_uniform_shader(GLuint indx, camera* cam, const mat4x4& obj_transform,
 	std::vector<lightsource*> lights) {
 	material_parts[model_parts[indx]->material_index]->update_material_uniform_shader(cam, obj_transform, lights);
+}
+
+
+void staticmodel::set_receive_shadow(GLboolean val) {
+	receive_shadow = val;
+}
+
+GLboolean staticmodel::is_receive_shadow()const {
+	return receive_shadow;
 }

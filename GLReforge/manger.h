@@ -2,17 +2,21 @@
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
-#include "staticmodel.h"
 #include "screen.h"
-#include "shader.h" // test
-#include "transform.h" // test
-#include "pointlight.h" // test
-#include "sunlight.h" // test
+
+#include "transform.h"
+
+#include "lightsource.h"
+#include "pointlight.h"
+#include "sunlight.h"
+
 #include "camera.h"
+#include "staticmodel.h"
 
 #include "entity.h"
 #include "component.h"
 #include "meshrenderer.h"
+
 
 #define FRAMCAP 1.0/60.0
 

@@ -29,7 +29,7 @@ void manger::engine_initialize() {
 
 	staticmodel *test_mesh = new staticmodel();
 	/* mesh */
-	if (!resouceloader::load_static_model("models/DamagedHelmet/DamagedHelmet.gltf", test_mesh)){
+	if (!resouceloader::load_static_model("models/sponza-gltf-pbr/Sponza.gltf", test_mesh)){
 		exit(0);
 	}
 
@@ -46,7 +46,7 @@ void manger::engine_initialize() {
 	/* sun light use pbrdirectionallight shader fpr this */
 	sunlight* simple_light = new sunlight();
 	simple_light->set_position(0.0f, 50.0f, 0.0f);
-	simple_light->set_direction(0.0f, -45.0f, 0.0f);
+	simple_light->set_direction(-113.0f, -50.0f, -137.0f);
 	simple_light->set_color(1.0f, 1.0f, 1.0f);
 	simple_light->intensity = 15.0f;
     std::vector<lightsource*> lights;
@@ -55,7 +55,7 @@ void manger::engine_initialize() {
 	/* simple transform */
 	test_global = 0.0f;
 	transform* test_transform = new  transform();
-    test_transform->rotation(90.0f, 0.0, 180.0f); /* for sponza */
+   // test_transform->rotation(90.0f, 0.0, 180.0f); /* for sponza */
 
 	/* create a mesh render */
 	meshrenderer* mesh_renderer = new meshrenderer(test_mesh, lights, cam);
