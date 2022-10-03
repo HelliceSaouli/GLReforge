@@ -49,6 +49,8 @@ void manger::engine_initialize() {
 	simple_light->set_direction(-113.0f, -50.0f, -137.0f);
 	simple_light->set_color(1.0f, 1.0f, 1.0f);
 	simple_light->intensity = 15.0f;
+	simple_light->set_shadowmap_width(512);
+	simple_light->set_shadowmap_hight(512);
     std::vector<lightsource*> lights;
     lights.push_back(simple_light);
 

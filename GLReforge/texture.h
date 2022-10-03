@@ -20,7 +20,9 @@ class texture
 	public:
 		GLboolean load_srgb_texture();
 		GLboolean load_non_srgb_maps();
+		GLboolean generate_depth_texture(GLuint width, GLuint hight);
 
+		
 		void use_texture(GLenum texture_unit);
 	private:
 		GLuint texture_object;

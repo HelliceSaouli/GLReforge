@@ -98,6 +98,28 @@ GLboolean texture::load_non_srgb_maps() {
 	return GL_TRUE;
 }
 
+GLboolean texture::generate_depth_texture(GLuint width, GLuint hight) {
+	
+	glGenTextures(1, &texture_object);
+
+	glBindTexture(GL_TEXTURE_2D, texture_object);
+	glTexImage2D(texture_target, 0, GL_DEPTH_COMPONENT32, width, hight, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+
+	// Set the default filtering modes
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// Set up depth comparison mode
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+	// Set up wrapping modes
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	return GL_TRUE;
+}
+
 void texture::use_texture(GLenum texture_unit) {
 	glActiveTexture(texture_unit);
 	glBindTexture(texture_target, texture_object);

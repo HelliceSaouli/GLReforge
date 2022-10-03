@@ -3,11 +3,22 @@
 lightsource::lightsource() {
 	/* white color initialization */
 	light_color = vec3(1.0f, 1.0f, 1.0f);
+
+	shadowmap_width = 256;
+	shadowmap_hight = 256;
+
 	cast_shadow = GL_TRUE;
 }
 
 lightsource::~lightsource() {
 
+}
+
+GLuint lightsource::get_shadowmap_width()const {
+	return shadowmap_width;
+}
+GLuint lightsource::get_shadowmap_hight()const {
+	return shadowmap_hight;
 }
 
 vec3 lightsource::get_position()const {
@@ -40,4 +51,12 @@ void lightsource::set_direction(GLfloat xangle, GLfloat yangle, GLfloat zangle) 
 
 void lightsource::set_color(GLfloat x, GLfloat y, GLfloat z) {
 	light_color = vec3(x, y, z);
+}
+
+void lightsource::set_shadowmap_width(GLuint val) {
+	shadowmap_width = val;
+}
+
+void lightsource::set_shadowmap_hight(GLuint val) {
+	shadowmap_hight = val;
 }
