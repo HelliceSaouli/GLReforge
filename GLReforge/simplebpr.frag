@@ -1,5 +1,7 @@
 #version 450
 
+#define MAX_SUPPORTED_LIGHT  100
+
 // in  vec3 fragcolor;
 in  vec2 uv_0;
 in  vec3 normal_0;
@@ -8,18 +10,20 @@ in  mat3 tbn;
 
 out vec4 color;
 
-uniform vec3 lightcolor;
-uniform vec3 sun_direction;
+uniform vec3 lightcolor[MAX_SUPPORTED_LIGHT];
+uniform vec3 sun_direction[MAX_SUPPORTED_LIGHT];
 uniform vec3 camera_world_location;
 
-uniform float intensity;
+uniform float intensity[MAX_SUPPORTED_LIGHT];
 
+uniform int number_of_lights;
 
 uniform int use_albedo_map;
 uniform int use_metalic_map;
 uniform int use_roughness_map;
 uniform int use_ao_map;
 uniform int use_normal_map;
+
 
 uniform vec3 albedo;
 uniform float metalic;
@@ -101,15 +105,8 @@ void main (){
 	if (use_normal_map == 1) {
 		normalized_normal = compute_bumps_via_normalmap();
 	}
-
-	vec3 light_direction = normalize(sun_direction);
-
-	vec3 view_direction = normalize(camera_world_location - wordpos);
-
-	// vec3 reflection_direction = reflect(view_direction, normalized_normal);
-
-	vec3 half_vector_direction = normalize(view_direction + light_direction);
 	
+	vec3 view_direction = normalize(camera_world_location - wordpos);
 
 	vec3 albedo_value;
     float metalic_value;
@@ -156,22 +153,25 @@ void main (){
 	vec3 f0 = vec3(0.04f);
 	f0 = mix(f0, albedo_value, metalic_value);
 
-	float ndotl = max(dot(normalized_normal, light_direction), 0.0);
-
 	/* this should be changed */
 	vec3 ambient_final = 0.2f  * albedo_value * ambeintocclusion_value;
 
 	/* compute the actual lighting here */
 	vec3 Lo = vec3(0.0f);
-	vec3 light_radience =  lightcolor * intensity;
-	float d = specular_d(half_vector_direction, normalized_normal, roughness_value); 
-	float g = specular_g(light_direction, view_direction, normalized_normal, roughness_value);
-	vec3  f = specular_f(f0, view_direction, half_vector_direction);
-	vec3  brdf_specular = brdf(light_direction, view_direction, normalized_normal, f, d, g);
-	vec3  diffuse_brdf =  lambert_diffuse(albedo_value, f, metalic_value);
+	for (int light = 0; light < number_of_lights ; light ++){
 
+		vec3 light_direction = normalize(sun_direction[light]);
 
-	Lo = ambient_final + (diffuse_brdf + brdf_specular) * light_radience * ndotl; 
-
-	color = vec4(Lo, alpha);
+		vec3 half_vector_direction = normalize(view_direction + light_direction);
+		
+		float ndotl = max(dot(normalized_normal, light_direction), 0.0);
+		vec3 light_radience =  lightcolor[light] * intensity[light];
+		float d = specular_d(half_vector_direction, normalized_normal, roughness_value); 
+		float g = specular_g(light_direction, view_direction, normalized_normal, roughness_value);
+		vec3  f = specular_f(f0, view_direction, half_vector_direction);
+		vec3  brdf_specular = brdf(light_direction, view_direction, normalized_normal, f, d, g);
+		vec3  diffuse_brdf =  lambert_diffuse(albedo_value, f, metalic_value);
+		Lo +=  (diffuse_brdf + brdf_specular) * light_radience * ndotl; 
+	}
+	color = vec4(ambient_final + Lo, alpha);
 }

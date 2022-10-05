@@ -1,6 +1,7 @@
 #pragma once
 #include "shader.h"
 
+#define MAX_SUPPORTED_LIGHT  100
 class pbrdirectionallight : public shader
 {
 protected:

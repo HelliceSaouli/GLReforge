@@ -74,6 +74,9 @@
     <ClCompile Include="shadowmap.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="shadowmapcomp.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="shadowmap.h">
       <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="shadowmapcomp.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

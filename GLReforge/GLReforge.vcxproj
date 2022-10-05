@@ -170,6 +170,7 @@
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="shadowmap.cpp" />
+    <ClCompile Include="shadowmapcomp.cpp" />
     <ClCompile Include="simpleshader.cpp" />
     <ClCompile Include="staticmodel.cpp" />
     <ClCompile Include="sunlight.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="screen.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="shadowmap.h" />
+    <ClInclude Include="shadowmapcomp.h" />
     <ClInclude Include="simpleshader.h" />
     <ClInclude Include="staticmodel.h" />
     <ClInclude Include="stb_image.h" />

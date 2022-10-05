@@ -17,11 +17,15 @@ pbrdirectionallight::pbrdirectionallight() :shader{} {
 	add_uniform("projection_matrix");
 	add_uniform("camera_matrix");
 	add_uniform("camera_world_location");
+	add_uniform("number_of_lights");
 
 	/* simple point lighting with one source */
-	add_uniform("lightcolor");
-	add_uniform("intensity");
-	add_uniform("sun_direction");
+	for (GLuint i = 0; i < MAX_SUPPORTED_LIGHT; i++) {
+		add_uniform("lightcolor[" + std::to_string(i) + "]");
+		add_uniform("intensity["  + std::to_string(i) + "]");
+		add_uniform("sun_direction[" + std::to_string(i) + "]");
+	}
+
 }
 
 
@@ -32,9 +36,15 @@ void pbrdirectionallight::uniforms_update(camera* cam, const mat4x4& obj_transfo
 	uniformMatrix4("projection_matrix", cam->get_projection());
 	uniformMatrix4("camera_matrix", cam->get_transform());
 	uniform3f("camera_world_location", cam->get_camera_current_location());
+	uniform1i("number_of_lights", (GLint)lights.size());
 
-	sunlight* sun_light = dynamic_cast<sunlight*>(lights[0]);
-	uniform3f("lightcolor", sun_light->get_color());
-	uniform1f("intensity", sun_light->intensity);
-	uniform3f("sun_direction", sun_light->get_direction());
+	for (GLuint i = 0; i < lights.size(); i++) {
+		if (i >= MAX_SUPPORTED_LIGHT)
+			break;
+
+		sunlight* sun_light = dynamic_cast<sunlight*>(lights[i]);
+		uniform3f("lightcolor[" + std::to_string(i) + "]", sun_light->get_color());
+		uniform1f("intensity[" + std::to_string(i) + "]", sun_light->intensity);
+		uniform3f("sun_direction[" + std::to_string(i) + "]", sun_light->get_direction());
+	}
 }

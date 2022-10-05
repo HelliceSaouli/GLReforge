@@ -5,25 +5,27 @@
 
 #include "lightsource.h"
 
+#include "shadowmap.h"
 
-#include "camera.h"
 #include "shader.h"
 
 #include <vector>
 
-class meshrenderer :public component
+class shadowmapcomp : public component
 {
-	public:
-		meshrenderer(staticmodel* _model, std::vector<lightsource*> _lights, camera* _cam);
-		~meshrenderer();
-	
-	public:
+
+	public: 
+		shadowmapcomp(shadowmap* _shadows, staticmodel* _model, std::vector<lightsource*> _lights);
+		~shadowmapcomp();
+
 		void render() override;
 		void init_component() override;
 
 	private:
 		staticmodel* model;
 		std::vector<lightsource*> lights;
-		camera* cam;
+		shadowmap* shadows;
+
+		GLuint shadowmap_framebuffer;
 };
 

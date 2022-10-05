@@ -9,6 +9,7 @@
 #include "lightsource.h"
 #include "pointlight.h"
 #include "sunlight.h"
+#include "shadowmap.h"
 
 #include "camera.h"
 #include "staticmodel.h"

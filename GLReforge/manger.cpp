@@ -54,6 +54,9 @@ void manger::engine_initialize() {
     std::vector<lightsource*> lights;
     lights.push_back(simple_light);
 
+	/* shadow map alwz add it to the root in scene*/
+	shadowmap* shadows = new shadowmap();
+
 	/* simple transform */
 	test_global = 0.0f;
 	transform* test_transform = new  transform();
@@ -66,11 +69,14 @@ void manger::engine_initialize() {
 	/* create  entities*/
 	root = new entity(GL_TRUE);
 	entity* model = new entity();
+	entity* shadow = new entity();
 
 	model->set_transform(test_transform);
 	model->add_entity_componenet(mesh_renderer);
+
 	root->add_entity_child(model);
-	
+	root->add_entity_child(shadow);
+
 	// don't forget to clean all this pointers later ?
 }
 
